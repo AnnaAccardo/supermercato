@@ -17,7 +17,7 @@ public class SottoCategoria {
     @Column
     private String marca;
 
-    @OneToMany(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_categoria", referencedColumnName = "id")
     private Categoria categoria;
 
@@ -35,7 +35,7 @@ public class SottoCategoria {
                     joinColumns = @JoinColumn(name = "id_sottocategoria", referencedColumnName = "id"),
                     inverseJoinColumns = @JoinColumn(name = "id_valore_offerta", referencedColumnName = "id")
             )
-    private List<Categoria> categorie = new ArrayList<>();
+    private List<ValoreOfferta> valoreOfferte = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -77,12 +77,11 @@ public class SottoCategoria {
         this.valoreOfferta = valoreOfferto;
     }
 
-    public List<Categoria> getCategorie() {
-        return categorie;
+    public List<ValoreOfferta> getValoreOfferte() {
+        return valoreOfferte;
     }
 
-    public void setCategorie(List<Categoria> categorie) {
-        this.categorie = categorie;
+    public void setValoreOfferte(List<ValoreOfferta> valoreOfferte) {
+        this.valoreOfferte = valoreOfferte;
     }
-
 }

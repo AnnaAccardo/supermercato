@@ -18,9 +18,8 @@ public class Categoria {
 
     @OneToMany(
             mappedBy = "categoria",
-            cascade = CascadeType.REMOVE,
-            fetch = FetchType.EAGER,
-            orphanRemoval = true
+            cascade = CascadeType.REFRESH,
+            fetch = FetchType.EAGER
     )
     private List<SottoCategoria> sottoCategorie = new ArrayList<>();
 

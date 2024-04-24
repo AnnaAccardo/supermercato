@@ -24,7 +24,7 @@ public class Prodotto {
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name= "id_sottocategoria", referencedColumnName = "id")
-    private Sottocategoria sottocategoria;
+    private SottoCategoria sottocategoria;
 
     public int getId() {
         return id;
@@ -66,11 +66,11 @@ public class Prodotto {
         this.immagine = immagine;
     }
 
-    public Sottocategoria getSottocategoria() {
+    public SottoCategoria getSottocategoria() {
         return sottocategoria;
     }
 
-    public void setSottocategoria(Sottocategoria sottocategoria) {
+    public void setSottocategoria(SottoCategoria sottocategoria) {
         this.sottocategoria = sottocategoria;
     }
 }
