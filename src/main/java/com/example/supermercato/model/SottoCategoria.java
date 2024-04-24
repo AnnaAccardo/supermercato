@@ -33,7 +33,7 @@ public class SottoCategoria {
             (
                     name = "offerte_in_arrivo",
                     joinColumns = @JoinColumn(name = "id_sottocategoria", referencedColumnName = "id"),
-                    inverseJoinColumns = @JoinColumn(name = "id_valore_offerta", referencedColumnName = id)
+                    inverseJoinColumns = @JoinColumn(name = "id_valore_offerta", referencedColumnName = "id")
             )
     private List<Categoria> categorie = new ArrayList<>();
 

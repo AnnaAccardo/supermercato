@@ -2,6 +2,7 @@ package com.example.supermercato.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,6 +15,14 @@ public class Categoria {
 
     @Column
     private String nome;
+
+    @OneToMany(
+            mappedBy = "categoria",
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER,
+            orphanRemoval = true
+    )
+    private List<SottoCategoria> sottoCategorie = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -29,5 +38,13 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<SottoCategoria> getSottoCategorie() {
+        return sottoCategorie;
+    }
+
+    public void setSottoCategorie(List<SottoCategoria> sottoCategorie) {
+        this.sottoCategorie = sottoCategorie;
     }
 }
