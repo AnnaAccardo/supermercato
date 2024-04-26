@@ -5,6 +5,7 @@ import com.example.supermercato.model.Sottocategoria;
 import com.example.supermercato.service.CategoriaService;
 import com.example.supermercato.service.ProdottoService;
 import com.example.supermercato.service.SottocategoriaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,9 +33,12 @@ public class AdminProdottiController {
     private Prodotto prodotto;
 
     @GetMapping
-    public String getPage(Model model, @RequestParam(name = "id", required = false) Integer id) {
+    public String getPage(Model model, @RequestParam(name = "id", required = false) Integer id, HttpSession session) {
 
-        List<Prodotto> prodotti = prodottoService.getProdotto();
+        if(session.getAttribute("admin") == null) {
+            return "redirect:/loginadmin";
+        }
+        List<Prodotto> prodotti = prodottoService.getProdotti();
         List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorie();
         prodotto = id == null ? new Prodotto() : prodottoService.getProdottoById(id);
         model.addAttribute("prodotti", prodotti);
