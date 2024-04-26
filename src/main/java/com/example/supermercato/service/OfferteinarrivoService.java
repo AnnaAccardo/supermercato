@@ -10,9 +10,4 @@ public interface OfferteInArrivoService {
 
     OfferteInArrivo getOfferteInArrivoById(int id);
     List<OfferteInArrivo> getOfferteInArrivo();
-
-    void registraOfferte(OfferteInArrivo offerteInArrivo, int idSottoCategoria, int idValoreOfferta, String dataInizio, String dataFine);
-    void cancellaOfferte(int idOfferteInArrivo);
-
-
 }

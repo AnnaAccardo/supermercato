@@ -21,5 +21,9 @@
             <td th:text="${prodotto.descrizione}"></td>
         </tr>
     </table>
+    <form action="/ricerca" method="GET">
+        <input type="text" name="nome">
+        <button type="submit">Cerca</button>
+    </form>
 </body>
 </html>

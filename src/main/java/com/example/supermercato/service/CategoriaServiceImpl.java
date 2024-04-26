@@ -2,6 +2,7 @@ package com.example.supermercato.service;
 
 import com.example.supermercato.dao.CategoriaDao;
 import com.example.supermercato.model.Categoria;
+import com.example.supermercato.model.Prodotto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,10 @@ public class CategoriaServiceImpl implements CategoriaService{
     @Override
     public void cancellaCategoria(int idCategoria) {
         categoriaDao.deleteById(idCategoria);
+    }
+
+    public List<Categoria> ricercaProdotto(String nome) {
+
+        return categoriaDao.findByNomeContaining(nome);
     }
 }
