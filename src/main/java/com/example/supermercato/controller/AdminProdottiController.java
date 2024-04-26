@@ -3,10 +3,8 @@ package com.example.supermercato.controller;
 import com.example.supermercato.model.OfferteInArrivo;
 import com.example.supermercato.model.Prodotto;
 import com.example.supermercato.model.Sottocategoria;
-import com.example.supermercato.service.CategoriaService;
-import com.example.supermercato.service.OfferteInArrivoService;
-import com.example.supermercato.service.ProdottoService;
-import com.example.supermercato.service.SottocategoriaService;
+import com.example.supermercato.model.ValoreOfferta;
+import com.example.supermercato.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -32,26 +31,44 @@ public class AdminProdottiController {
     @Autowired
     private CategoriaService categoriaService;
 
+    @Autowired
+    private ValoreOffertaService valoreOffertaService;
+
     private Prodotto prodotto;
+    private OfferteInArrivo offertaInArrivo;
 
     @Autowired
     private OfferteInArrivoService offerteInArrivoService;
 
     @GetMapping
-    public String getPage(Model model, @RequestParam(name = "id", required = false) Integer id, HttpSession session) {
+    public String getPage(
+            Model model,
+            @RequestParam(name = "id", required = false) Integer id,
+            @RequestParam(name = "idOff", required = false) Integer idOff,
+            HttpSession session
+    ){
 
 
         if(session.getAttribute("admin") == null)
             return "redirect:/loginadmin";
         List<Prodotto> prodotti = prodottoService.getProdotti();
+        model.addAttribute("prodotti", prodotti);
+
         List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorie();
+        model.addAttribute("sottocategorie", sottocategorie);
+
         List<OfferteInArrivo> offerte = offerteInArrivoService.getOfferteInArrivo();
+        model.addAttribute("offerte",offerte);
 
         prodotto = id == null ? new Prodotto() : prodottoService.getProdottoById(id);
-        model.addAttribute("prodotti", prodotti);
-        model.addAttribute("sottocategorie", sottocategorie);
         model.addAttribute("prodotto", prodotto);
-        model.addAttribute("offerte",offerte);
+
+        offertaInArrivo = idOff == null ? new OfferteInArrivo() : offerteInArrivoService.getOfferteInArrivoById(idOff);
+        model.addAttribute("offertainarrivo", offertaInArrivo);
+
+        List<ValoreOfferta> valoreOfferta = valoreOffertaService.getValoreOfferta();
+        model.addAttribute("valoreofferta", valoreOfferta);
+
         return "adminprodotti";
     }
 
@@ -67,6 +84,17 @@ public class AdminProdottiController {
         return "redirect:/adminprodotti";
     }
 
+    @PostMapping("/aggiungiofferta")
+    public String formManager(
+            @RequestParam("sottocategorie") int idSottocategorie,
+            @RequestParam("valoriofferte") int idValoreOfferta,
+            @RequestParam("datainizio")LocalDate dataInizio,
+            @RequestParam("datafine") LocalDate dataFine
+            ){
+        offerteInArrivoService.aggiungiOffertaInArrivo(offertaInArrivo, idSottocategorie, idValoreOfferta, dataInizio, dataFine);
+        return "redirect:/adminprodotti";
+    }
+
     @GetMapping("/elimina")
     public String eliminaProdotto(@RequestParam("id") int id) {
 
@@ -74,4 +102,11 @@ public class AdminProdottiController {
         return "redirect:/adminprodotti";
     }
 
+    @GetMapping("/eliminaOff")
+    public String eliminaOfferta(
+            @RequestParam("idOff") int idOff
+    ){
+        offerteInArrivoService.cancellaOffertaInArrivo(idOff);
+        return "redirect:/adminprodotti";
+    }
 }

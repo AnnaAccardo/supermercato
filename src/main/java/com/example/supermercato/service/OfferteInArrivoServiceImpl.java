@@ -5,11 +5,17 @@ import com.example.supermercato.model.OfferteInArrivo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class OfferteInArrivoServiceImpl implements OfferteInArrivoService {
+    @Autowired
+    private SottocategoriaService sottocategoriaService;
+
+    @Autowired
+    private ValoreOffertaService valoreOffertaService;
 
     @Autowired
     private OfferteInArrivoDao offerteInArrivoDao;
@@ -26,4 +32,21 @@ public class OfferteInArrivoServiceImpl implements OfferteInArrivoService {
     public List<OfferteInArrivo> getOfferteInArrivo() {
         return (List<OfferteInArrivo>) offerteInArrivoDao.findAll();
     }
+
+    @Override
+    public void cancellaOffertaInArrivo(int id) {
+        offerteInArrivoDao.deleteById(id);
+    }
+
+    @Override
+    public void aggiungiOffertaInArrivo(OfferteInArrivo nuovaOfferta, int idSottocategoria, int idValoreOfferta, LocalDate dataInizio, LocalDate dataFine) {
+        nuovaOfferta.setSottocategoria(sottocategoriaService.getSottocategoriaById(idSottocategoria));
+        nuovaOfferta.setValoreOfferta(valoreOffertaService.getValoreOffertaById(idValoreOfferta));
+        nuovaOfferta.setDataInizio(dataInizio);
+        nuovaOfferta.setDataFine(dataFine);
+
+        offerteInArrivoDao.save(nuovaOfferta);
+    }
+
+
 }
