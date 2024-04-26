@@ -5,7 +5,7 @@
     <title>Home Page</title>
 </head>
 <body>
-    <h5>Scegli la Categoria per le offerte</h5>
+    <h5>Scegli la Categoria per le Offerte</h5>
     <table>
         <tr th:each="categoria : ${categorie}" >
             <td> <a th:href="@{/offerte(id=${categoria.id})}"  th:text="${categoria.nome}"></a> </td>
