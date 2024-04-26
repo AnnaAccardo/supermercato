@@ -31,8 +31,11 @@ public class IndexController {
     public String getPage(
             Model model
     ){
+        List<Prodotto> prodotti = prodottoService.getProdotti();
         List<Categoria> categorie = categoriaService.getCategorie();
         model.addAttribute("categorie", categorie);
+        model.addAttribute("prodotti", prodotti);
+
         return "index";
     }
 

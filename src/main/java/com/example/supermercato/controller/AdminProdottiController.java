@@ -34,7 +34,7 @@ public class AdminProdottiController {
     @GetMapping
     public String getPage(Model model, @RequestParam(name = "id", required = false) Integer id) {
 
-        List<Prodotto> prodotti = prodottoService.getProdotto();
+        List<Prodotto> prodotti = prodottoService.getProdotti();
         List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorie();
         prodotto = id == null ? new Prodotto() : prodottoService.getProdottoById(id);
         model.addAttribute("prodotti", prodotti);
