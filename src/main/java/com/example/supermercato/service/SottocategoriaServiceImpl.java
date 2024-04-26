@@ -21,4 +21,14 @@ public class SottocategoriaServiceImpl implements SottocategoriaService{
     public List<Sottocategoria> getSottocategorie() {
         return (List<Sottocategoria>) sottocategoriaDao.findAll();
     }
+
+    @Override
+    public void registraSottocategoria(Sottocategoria sottocategoria) {
+        sottocategoriaDao.save(sottocategoria);
+    }
+
+    @Override
+    public void cancellaSottocategoria(int idSottocategoria) {
+        sottocategoriaDao.deleteById(idSottocategoria);
+    }
 }

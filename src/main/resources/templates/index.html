@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+    <h5>Scegli la Categoria per le offerte</h5>
+    <table>
+        <tr th:each="categoria : ${categorie}" >
+            <td th:text="${categoria.nome}"></td>
+        </tr>
+    </table>
+</body>
+</html>
