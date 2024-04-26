@@ -13,4 +13,5 @@ public interface OfferteInArrivoService {
     List<OfferteInArrivo> getOfferteInArrivo();
     void cancellaOffertaInArrivo(int id);
     void aggiungiOffertaInArrivo(OfferteInArrivo nuovaOfferta,int idSottocategoria, int idValoreOfferta, LocalDate dataInizio, LocalDate dataFine);
+    void attivaOfferta(int idOfferta, int idSottocategoria, int idValore);
 }

@@ -2,6 +2,7 @@ package com.example.supermercato.service;
 
 import com.example.supermercato.dao.OfferteInArrivoDao;
 import com.example.supermercato.model.OfferteInArrivo;
+import com.example.supermercato.model.Sottocategoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,5 +49,12 @@ public class OfferteInArrivoServiceImpl implements OfferteInArrivoService {
         offerteInArrivoDao.save(nuovaOfferta);
     }
 
+    @Override
+    public void attivaOfferta(int idOfferta, int idSottocategoria, int idValore) {
+       Sottocategoria sottocategoria = sottocategoriaService.getSottocategoriaById(idSottocategoria);
+       sottocategoria.setStatoOfferta(true);
+       sottocategoria.setValoreOfferta(valoreOffertaService.getValoreOffertaById(idValore));
+       offerteInArrivoDao.deleteById(idOfferta);
+    }
 
 }

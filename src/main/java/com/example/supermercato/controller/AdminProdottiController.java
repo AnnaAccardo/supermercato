@@ -109,4 +109,15 @@ public class AdminProdottiController {
         offerteInArrivoService.cancellaOffertaInArrivo(idOff);
         return "redirect:/adminprodotti";
     }
+
+    @GetMapping("/attivaofferta")
+    public String attivaOfferta(
+            @RequestParam("idOff") int idOff,
+            @RequestParam("idSott") int idSott,
+            @RequestParam("idVal") int idVal
+    ){
+
+        offerteInArrivoService.attivaOfferta(idOff, idSott, idVal);
+        return "redirect:/adminprodotti";
+    }
 }

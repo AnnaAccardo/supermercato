@@ -17,6 +17,8 @@
         <td th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}"></td>
         <td th:text="${prodotto.descrizione}"></td>
         <td th:text="${prodotto.sottocategoria.marca}"></td>
+        <td th:text="${prodotto.sottocategoria.statoOfferta==true ? 'Offerta Attiva' : 'Offerta Non Attiva'}"></td>
+        <td th:if="${prodotto.sottocategoria.statoOfferta==true}" th:text="${prodotto.sottocategoria.valoreOfferta.valore} + '%'"></td>
         <td>
             <a th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
             <a th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
@@ -60,6 +62,7 @@
         <td>
             <a th:href="@{/adminprodotti(idOff=${offerta.id})}">Modifica</a>
             <a th:href="@{/adminprodotti/eliminaOff(idOff=${offerta.id})}">Elimina</a>
+            <a th:href="@{/adminprodotti/attivaofferta(idOff=${offerta.id}, idSott=${offerta.sottocategoria.id}, idVal=${offerta.valoreOfferta.id})}">Rendi Attiva</a>
         </td>
     </tr>
 </table>
