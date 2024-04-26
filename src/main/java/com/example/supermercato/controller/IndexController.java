@@ -52,4 +52,12 @@ public class IndexController {
         model.addAttribute("prodotti", prodotti);
         return "offerte";
     }
+
+    @GetMapping("/ricerca")
+    public String ricerca(@RequestParam("nome") String nome, Model model) {
+
+        List<Categoria> risultati = categoriaService.ricercaProdotto(nome);
+        model.addAttribute("risultati", risultati);
+        return "risultati";
+    }
 }
