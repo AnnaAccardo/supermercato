@@ -8,7 +8,7 @@
     <h5>Scegli la Categoria per le offerte</h5>
     <table>
         <tr th:each="categoria : ${categorie}" >
-            <td th:text="${categoria.nome}"></td>
+            <td> <a th:href="@{/offerte(id=${categoria.id})}"  th:text="${categoria.nome}"></a> </td>
         </tr>
     </table>
 </body>

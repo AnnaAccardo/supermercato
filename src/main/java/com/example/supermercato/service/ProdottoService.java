@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface ProdottoService {
 
-    List<Prodotto> getProdotto();
+    List<Prodotto> getProdotti();
+    List<Prodotto> getProdottiBySottocategoriaId(int idSottocategoria);
     Prodotto getProdottoById(int id);
     void registraProdotto(Prodotto prodotto, String nome, String prezzo, String descrizione, int idSottoCategoria, MultipartFile immagine);
     void cancellaProdotto(int idProdotto);

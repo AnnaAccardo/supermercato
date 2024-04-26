@@ -28,11 +28,11 @@
     <br>
     <input type="text" name="descrizione" th:value="${prodotto.descrizione}" required>
     <br>
-    <select name="sottocategoria">
-        <option th:each="sottocategorie : ${sottocategoria}"
-                th:text="${sottocategorie.marca}"
-                th:value="${sottocategorie.id}"
-                th:selected="${prodotto.sottocategorie != null && sottocategorie.id == prodotto.sottocategorie.id}">
+    <select name="sottocategorie">
+        <option th:each="sottocategoria : ${sottocategorie}"
+                th:text="${sottocategoria.marca}"
+                th:value="${sottocategoria.id}"
+                th:selected="${prodotto.sottocategoria != null && sottocategoria.id == prodotto.sottocategoria.id}">
         </option>
     </select>
     <br>
