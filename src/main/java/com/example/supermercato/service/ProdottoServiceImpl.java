@@ -20,8 +20,13 @@ public class ProdottoServiceImpl implements ProdottoService{
     private SottocategoriaService sottocategoriaService;
 
     @Override
-    public List<Prodotto> getProdotto() {
+    public List<Prodotto> getProdotti() {
         return (List<Prodotto>) prodottoDao.findAll();
+    }
+
+    @Override
+    public List<Prodotto> getProdottiBySottocategoriaId(int idSottocategoria) {
+        return (List<Prodotto>) prodottoDao.findBySottocategoriaId(idSottocategoria);
     }
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")

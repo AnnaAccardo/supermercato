@@ -23,6 +23,16 @@ public class SottocategoriaServiceImpl implements SottocategoriaService{
     }
 
     @Override
+    public List<Sottocategoria> getSottocategorieByCategoriaId(int idCategoria) {
+        return (List<Sottocategoria>) sottocategoriaDao.findByCategoriaId(idCategoria);
+    }
+
+    @Override
+    public List<Sottocategoria> getOfferte(int idCategoria) {
+        return (List<Sottocategoria>) sottocategoriaDao.findDistinctByCategoriaIdAndStatoOffertaIsTrue(idCategoria);
+    }
+
+    @Override
     public void registraSottocategoria(Sottocategoria sottocategoria) {
         sottocategoriaDao.save(sottocategoria);
     }

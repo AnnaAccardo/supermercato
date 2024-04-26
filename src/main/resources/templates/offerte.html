@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Offerte</title>
+</head>
+<body>
+<h3 th:text="'Offerte ' + ${categoria.nome}"></h3>
+    <table>
+        <tr th:each="sottocategoria : ${sottocategorie}">
+            <td th:text="${sottocategoria.marca}"></td>
+            <td th:each="prodotto : ${prodotti}" th:if="${prodotto.sottocategoria.id == sottocategoria.id}" th:text="${prodotto.nome} + ' ' + ${prodotto.sottocategoria.marca} + ', costo ' + ${prodotto.prezzo} + ', ' + ${prodotto.descrizione}"><img th:src="@{${prodotto.immagine}}" ></td>
+        </tr>
+    </table>
+</body>
+</html>
