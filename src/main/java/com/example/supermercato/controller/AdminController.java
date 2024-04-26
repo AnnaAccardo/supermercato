@@ -21,17 +21,17 @@ public class AdminController {
     public String getPage(HttpSession session, @RequestParam(name = "error", required = false) String error, Model model) {
 
         if(session.getAttribute("admin") != null)
-            return "redirect:/riservatoadmin";
+            return "redirect:/adminprodotti";
         model.addAttribute("error", error);
         return "loginadmin";
     }
 
     @PostMapping
-    public String getPost(@RequestParam("nome") String nome, @RequestParam("cognome") String cognome, @RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
+    public String getPost(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
 
-        if(!adminService.loginAdmin(nome, cognome, username, password, session))
+        if(!adminService.loginAdmin(username, password, session))
             return "redirect:/loginadmin?error";
-        return "redirect:/riservatoadmin";
+        return "redirect:/adminprodotti";
     }
 
 }

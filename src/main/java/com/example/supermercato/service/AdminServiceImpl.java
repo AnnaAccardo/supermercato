@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminServiceImpl implements AdminService {
 
@@ -13,9 +15,19 @@ public class AdminServiceImpl implements AdminService {
     private AdminDao adminDao;
 
     @Override
-    public boolean loginAdmin(String nome, String cognome, String username, String password, HttpSession session) {
+    public List<Admin> getAdmin() {
+        return (List<Admin>) adminDao.findAll();
+    }
 
-        Admin admin = (Admin) adminDao.findAll();
+    @Override
+    public Admin getAdminById(int id) {
+        return adminDao.findById(id).get();
+    }
+
+    @Override
+    public boolean loginAdmin(String username, String password, HttpSession session) {
+
+        Admin admin = (Admin) adminDao.findByUsernameAndPassword(username, password);
         if(admin != null) {
             session.setAttribute("admin", admin);
             return true;
