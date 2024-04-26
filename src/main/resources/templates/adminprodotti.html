@@ -5,6 +5,7 @@
     <title>Area Admin - Libri</title>
 </head>
 <body>
+<h2>PRODOTTI</h2>
 <table>
     <tr th:each="prodotto : ${prodotti}">
         <td>
@@ -17,8 +18,6 @@
         <td th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}"></td>
         <td th:text="${prodotto.descrizione}"></td>
         <td th:text="${prodotto.sottocategoria.marca}"></td>
-        <td th:text="${prodotto.sottocategoria.statoOfferta==true ? 'Offerta Attiva' : 'Offerta Non Attiva'}"></td>
-        <td th:if="${prodotto.sottocategoria.statoOfferta==true}" th:text="${prodotto.sottocategoria.valoreOfferta.valore} + '%'"></td>
         <td>
             <a th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
             <a th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
@@ -45,6 +44,25 @@
     <br>
     <input type="submit" value="Registra">
 </form>
+
+<br>
+<br>
+<h2>MARCHE</h2>
+<table>
+    <tr>
+        <td>Marca</td>
+        <td>Categoria</td>
+        <td>Stato Offerta</td>
+        <td>Offerta</td>
+    </tr>
+    <tr th:each="sottocategoria : ${sottocategorie}">
+        <td th:text="${sottocategoria.marca}"></td>
+        <td th:text="${sottocategoria.categoria.nome}"></td>
+        <td th:text="${sottocategoria.statoOfferta == true ? 'Attiva' : 'Non Attiva'}"></td>
+        <td th:text="${sottocategoria.statoOfferta == false ? '--' : sottocategoria.valoreOfferta.valore + '%'}"></td>
+    </tr>
+</table>
+
 
 <h5>OFFERTE IN ARRIVO</h5>
 <table th:if="${offerte != null}">
