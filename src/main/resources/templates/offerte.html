@@ -17,6 +17,7 @@
             <td>Descrizione</td>
         </tr>
         <tr th:each="prodotto : ${prodotti}" th:if="${prodotto.sottocategoria.id == sottocategoria.id}">
+            <td><img th:src="@{${prodotto.immagine == null ? 'markerImage.png' : prodotto.immagine}}" ></td>
             <td th:text="${prodotto.nome}"></td>
             <td th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 0, 'POINT', 2, 'COMMA')}"></td>
             <td th:text="${prodotto.descrizione}"></td>

@@ -1,13 +1,12 @@
 package com.example.supermercato.service;
 
-import com.example.supermercato.model.Categoria;
-import com.example.supermercato.model.Offerteinarrivo;
+import com.example.supermercato.model.OfferteInArrivo;
 
 import java.util.List;
 
-public interface OfferteinarrivoService {
+public interface OfferteInArrivoService {
 
-    Offerteinarrivo getOfferteinarrivoById(int id);
-    List<Offerteinarrivo> getOfferteinarrivo();
+    OfferteInArrivo getOfferteInArrivoById(int id);
+    List<OfferteInArrivo> getOfferteInArrivo();
 
 }

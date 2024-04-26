@@ -1,11 +1,9 @@
 package com.example.supermercato.controller;
 
 import com.example.supermercato.model.Categoria;
-import com.example.supermercato.model.Offerteinarrivo;
 import com.example.supermercato.model.Prodotto;
 import com.example.supermercato.model.Sottocategoria;
 import com.example.supermercato.service.CategoriaService;
-import com.example.supermercato.service.OfferteinarrivoService;
 import com.example.supermercato.service.ProdottoService;
 import com.example.supermercato.service.SottocategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;

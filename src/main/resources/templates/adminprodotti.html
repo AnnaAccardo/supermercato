@@ -43,5 +43,21 @@
     <br>
     <input type="submit" value="Registra">
 </form>
+
+<h5>OFFERTE IN ARRIVO</h5>
+<table th:if="${offerte != null}">
+    <tr>
+        <td>Marca</td>
+        <td>Offerta</td>
+        <td>Data Inizio</td>
+        <td>Data Fine</td>
+    </tr>
+    <tr th:each="offerta : ${offerte}">
+        <td th:text="${offerta.sottocategoria.marca}"></td>
+        <td th:text="${offerta.valoreOfferta.valore} + '%'"></td>
+        <td th:text="${offerta.dataInizio}"></td>
+        <td th:text="${offerta.dataFine}"></td>
+    </tr>
+</table>
 </body>
 </html>

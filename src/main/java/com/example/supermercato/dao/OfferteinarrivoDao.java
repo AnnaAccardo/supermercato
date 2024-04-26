@@ -1,7 +1,7 @@
 package com.example.supermercato.dao;
 
-import com.example.supermercato.model.Offerteinarrivo;
+import com.example.supermercato.model.OfferteInArrivo;
 import org.springframework.data.repository.CrudRepository;
 
-public interface OfferteinarrivoDao extends CrudRepository<Offerteinarrivo, Integer> {
+public interface OfferteInArrivoDao extends CrudRepository<OfferteInArrivo, Integer> {
 }

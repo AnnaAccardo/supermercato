@@ -1,8 +1,10 @@
 package com.example.supermercato.controller;
 
+import com.example.supermercato.model.OfferteInArrivo;
 import com.example.supermercato.model.Prodotto;
 import com.example.supermercato.model.Sottocategoria;
 import com.example.supermercato.service.CategoriaService;
+import com.example.supermercato.service.OfferteInArrivoService;
 import com.example.supermercato.service.ProdottoService;
 import com.example.supermercato.service.SottocategoriaService;
 import jakarta.servlet.http.HttpSession;
@@ -32,6 +34,9 @@ public class AdminProdottiController {
 
     private Prodotto prodotto;
 
+    @Autowired
+    private OfferteInArrivoService offerteInArrivoService;
+
     @GetMapping
     public String getPage(Model model, @RequestParam(name = "id", required = false) Integer id, HttpSession session) {
 
@@ -40,10 +45,13 @@ public class AdminProdottiController {
             return "redirect:/loginadmin";
         List<Prodotto> prodotti = prodottoService.getProdotti();
         List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorie();
+        List<OfferteInArrivo> offerte = offerteInArrivoService.getOfferteInArrivo();
+
         prodotto = id == null ? new Prodotto() : prodottoService.getProdottoById(id);
         model.addAttribute("prodotti", prodotti);
         model.addAttribute("sottocategorie", sottocategorie);
         model.addAttribute("prodotto", prodotto);
+        model.addAttribute("offerte",offerte);
         return "adminprodotti";
     }
 

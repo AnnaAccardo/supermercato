@@ -1,23 +1,22 @@
 package com.example.supermercato.model;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "offerte_in_arrivo")
-public class Offerteinarrivo {
+public class OfferteInArrivo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(name = "data_inizio")
     private LocalDate dataInizio;
 
-    @Column
-    private LocalDate dateFine;
+    @Column(name = "data_fine")
+    private LocalDate dataFine;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "id_valore_offerta", referencedColumnName = "id")
@@ -43,12 +42,12 @@ public class Offerteinarrivo {
         this.dataInizio = dataInizio;
     }
 
-    public LocalDate getDateFine() {
-        return dateFine;
+    public LocalDate getDataFine() {
+        return dataFine;
     }
 
-    public void setDateFine(LocalDate dateFine) {
-        this.dateFine = dateFine;
+    public void setDataFine(LocalDate dataFine) {
+        this.dataFine = dataFine;
     }
 
     public ValoreOfferta getValoreOfferta() {
