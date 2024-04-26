@@ -8,7 +8,10 @@
 <table>
     <tr th:each="prodotto : ${prodotti}">
         <td>
-            <!-- <img th:src="@{$prodotto.immagine == null ? 'markerImage.png' : libro.copertina}}" style="max-height:100px"> -->
+           <!-- <img th:src="@{$prodotto.immagine == null ? 'markerImage.png' : prodotto.immagine}}" style="max-height:100px"> -->
+            <img th:if="${prodotto.immagine != null}"
+                 th:src="${prodotto.immagine}"
+                 alt="Immagine Prodotto" />
         </td>
         <td th:text="${prodotto.nome}"></td>
         <td th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}"></td>
