@@ -28,7 +28,7 @@ public class SottoCategoria {
     @JoinColumn(name = "id_valore_offerta", referencedColumnName = "id")
     private ValoreOfferta valoreOfferta;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable
             (
                     name = "offerte_in_arrivo",

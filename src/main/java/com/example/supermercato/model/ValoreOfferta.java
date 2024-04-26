@@ -16,7 +16,7 @@ public class ValoreOfferta {
     @Column
     private int valore;
 
-    @OneToMany(
+    @ManyToMany(
 
             cascade = CascadeType.REFRESH,
             fetch = FetchType.EAGER

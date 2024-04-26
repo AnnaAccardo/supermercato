@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Test</title>
+</head>
+<body>
+    <p th:if="${error != null}">Credenziali Errate</p>
+    <form action="/loginadmin" method="post">
+       <input type="text" name="nome" placeholder="Nome" required>
+        <br>
+        <input type="text" name="cognome" placeholder="Cognome" required>
+        <br>
+        <input type="text" name="username" placeholder="Username" required>
+        <br>
+        <input type="password" name="password" placeholder="password" required>
+        <br>
+        <input type="submit" value="Accedi">
+    </form>
+</body>
+</html>
