@@ -4,6 +4,7 @@ import com.example.supermercato.dao.ProdottoDao;
 import com.example.supermercato.model.Prodotto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class ProdottoServiceImpl implements ProdottoService{
     }
 
     @Override
-    public void registraProdotto(Prodotto prodotto) {
+    public void registraProdotto(Prodotto prodotto, String nome, String prezzo, String descrizione, int idSottoCategoria, MultipartFile immagine) {
         prodottoDao.save(prodotto);
     }
 

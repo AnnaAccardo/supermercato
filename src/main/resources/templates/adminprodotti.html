@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Area Admin - Libri</title>
+</head>
+<body>
+<table>
+    <tr th:each="prodotto : ${prodotti}">
+        <td>
+            <!-- <img th:src="@{$prodotto.immagine == null ? 'markerImage.png' : libro.copertina}}" style="max-height:100px"> -->
+        </td>
+        <td th:text="${prodotto.nome}"></td>
+        <td th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}"></td>
+        <td th:text="${prodotto.descrizione}"></td>
+        <td th:text="${prodotto.sottocategoria.marca}"></td>
+        <td>
+            <a th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
+            <a th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
+        </td>
+    </tr>
+</table>
+<hr>
+<form action="/adminprodotti" method="post" enctype="multipart/form-data">
+    <input type="text" name="nome" th:value="${prodotto.nome}" required>
+    <br>
+    <input type="number" step="any" name="prezzo" th:value="${prodotto.prezzo}" required>
+    <br>
+    <input type="text" name="descrizione" th:value="${prodotto.descrizione}" required>
+    <br>
+    <select name="sottocategoria">
+        <option th:each="sottocategorie : ${sottocategoria}"
+                th:text="${sottocategorie.marca}"
+                th:value="${sottocategorie.id}"
+                th:selected="${prodotto.sottocategorie != null && sottocategorie.id == prodotto.sottocategorie.id}">
+        </option>
+    </select>
+    <br>
+    <input type="file" name="immagine">
+    <br>
+    <input type="submit" value="Registra">
+</form>
+</body>
+</html>
