@@ -27,15 +27,6 @@ public class Sottocategoria {
     @JoinColumn(name = "id_valore_offerta", referencedColumnName = "id")
     private ValoreOfferta valoreOfferta;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinTable
-            (
-                    name = "offerte_in_arrivo",
-                    joinColumns = @JoinColumn(name = "id_sottocategoria", referencedColumnName = "id"),
-                    inverseJoinColumns = @JoinColumn(name = "id_valore_offerta", referencedColumnName = "id")
-            )
-    private List<ValoreOfferta> valoreOfferte = new ArrayList<>();
-
     public int getId() {
         return id;
     }
@@ -76,11 +67,4 @@ public class Sottocategoria {
         this.valoreOfferta = valoreOfferto;
     }
 
-    public List<ValoreOfferta> getValoreOfferte() {
-        return valoreOfferte;
-    }
-
-    public void setValoreOfferte(List<ValoreOfferta> valoreOfferte) {
-        this.valoreOfferte = valoreOfferte;
-    }
 }
