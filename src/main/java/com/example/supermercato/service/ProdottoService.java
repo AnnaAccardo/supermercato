@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface ProdottoService {
 
-    List<Prodotto> getProdotto();
+    List<Prodotto> getProdotti();
+    List<Prodotto> getProdottiBySottocategoriaId(int idSottocategoria);
     Prodotto getProdottoById(int id);
     void registraProdotto(Prodotto prodotto);
     void cancellaProdotto(int idProdotto);
