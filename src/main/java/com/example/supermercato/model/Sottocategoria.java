@@ -1,14 +1,13 @@
 package com.example.supermercato.model;
 
 import jakarta.persistence.*;
-import org.springframework.data.repository.cdi.Eager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "sottocategorie")
-public class SottoCategoria {
+public class Sottocategoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

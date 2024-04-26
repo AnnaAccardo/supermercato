@@ -21,7 +21,7 @@ public class Categoria {
             cascade = CascadeType.REFRESH,
             fetch = FetchType.EAGER
     )
-    private List<SottoCategoria> sottoCategorie = new ArrayList<>();
+    private List<Sottocategoria> sottoCategorie = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -39,11 +39,11 @@ public class Categoria {
         this.nome = nome;
     }
 
-    public List<SottoCategoria> getSottoCategorie() {
+    public List<Sottocategoria> getSottoCategorie() {
         return sottoCategorie;
     }
 
-    public void setSottoCategorie(List<SottoCategoria> sottoCategorie) {
+    public void setSottoCategorie(List<Sottocategoria> sottoCategorie) {
         this.sottoCategorie = sottoCategorie;
     }
 }
