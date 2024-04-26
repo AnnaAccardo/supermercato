@@ -35,9 +35,9 @@ public class AdminProdottiController {
     @GetMapping
     public String getPage(Model model, @RequestParam(name = "id", required = false) Integer id, HttpSession session) {
 
-        if(session.getAttribute("admin") == null) {
+
+        if(session.getAttribute("admin") == null)
             return "redirect:/loginadmin";
-        }
         List<Prodotto> prodotti = prodottoService.getProdotti();
         List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorie();
         prodotto = id == null ? new Prodotto() : prodottoService.getProdottoById(id);

@@ -11,5 +11,14 @@
             <td> <a th:href="@{/offerte(id=${categoria.id})}"  th:text="${categoria.nome}"></a> </td>
         </tr>
     </table>
+
+    <h4>Prodotti in evidenza</h4>
+    <table>
+        <tr th:each="prodotto: ${prodotti}" th:if="${prodotto.id} < 5 and ${prodotto.sottocategoria.statoOfferta == true}">
+            <td th:text="${prodotto.nome}"></td>
+            <td th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 0, 'POINT', 2, 'COMMA')}"></td>
+            <td th:text="${prodotto.descrizione}"></td>
+        </tr>
+    </table>
 </body>
 </html>
