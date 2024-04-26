@@ -10,3 +10,4 @@ public interface OfferteInArrivoService {
     List<OfferteInArrivo> getOfferteInArrivo();
 
 }
+
