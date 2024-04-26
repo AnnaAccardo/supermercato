@@ -24,4 +24,14 @@ public class ProdottoServiceImpl implements ProdottoService{
     public Prodotto getProdottoById(int id) {
         return prodottoDao.findById(id).get();
     }
+
+    @Override
+    public void registraProdotto(Prodotto prodotto) {
+        prodottoDao.save(prodotto);
+    }
+
+    @Override
+    public void cancellaProdotto(int idProdotto) {
+        prodottoDao.deleteById(idProdotto);
+    }
 }

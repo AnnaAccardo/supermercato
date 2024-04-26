@@ -22,7 +22,7 @@ public class ValoreOfferta {
             fetch = FetchType.EAGER
     )
     @JoinTable(
-            name = "offerta_in_arrivo",
+            name = "offerte_in_arrivo",
             joinColumns = @JoinColumn(name = "id_valore_offerta", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "id_sottocategoria", referencedColumnName = "id")
     )

@@ -8,4 +8,6 @@ public interface ProdottoService {
 
     List<Prodotto> getProdotto();
     Prodotto getProdottoById(int id);
+    void registraProdotto(Prodotto prodotto);
+    void cancellaProdotto(int idProdotto);
 }

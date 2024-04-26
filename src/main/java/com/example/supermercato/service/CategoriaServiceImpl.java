@@ -21,4 +21,14 @@ public class CategoriaServiceImpl implements CategoriaService{
     public List<Categoria> getCategorie() {
         return (List<Categoria>) categoriaDao.findAll();
     }
+
+    @Override
+    public void registraCategoria(Categoria categoria) {
+        categoriaDao.save(categoria);
+    }
+
+    @Override
+    public void cancellaCategoria(int idCategoria) {
+        categoriaDao.deleteById(idCategoria);
+    }
 }
