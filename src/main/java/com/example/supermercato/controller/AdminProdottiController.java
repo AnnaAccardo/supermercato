@@ -47,10 +47,10 @@ public class AdminProdottiController {
     public String getForm(@RequestParam("nome") String nome,
                           @RequestParam("prezzo") String prezzo,
                           @RequestParam("descrizione") String descrizione,
-                          @RequestParam("sottocategoria") int idSottocategoria,
+                          @RequestParam("sottocategorie") int idSottocategorie,
                           @RequestParam(name = "immagine", required = false) MultipartFile immagine) {
 
-        prodottoService.registraProdotto(prodotto, nome, prezzo, descrizione, idSottocategoria, immagine);
+        prodottoService.registraProdotto(prodotto, nome, prezzo, descrizione, idSottocategorie, immagine);
 
         return "redirect:/adminprodotti";
     }
