@@ -27,4 +27,3 @@ public class OfferteInArrivoServiceImpl implements OfferteInArrivoService {
         return (List<OfferteInArrivo>) offerteInArrivoDao.findAll();
     }
 }
-
