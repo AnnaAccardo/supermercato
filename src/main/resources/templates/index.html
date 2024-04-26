@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Home Page</title>
 </head>
+<form action="/ricerca" method="GET">
+    <input type="text" name="nome">
+    <button type="submit">Cerca</button>
+</form>
 <body>
     <h5>Scegli la Categoria per le Offerte</h5>
     <table>
@@ -21,9 +25,5 @@
             <td th:text="${prodotto.descrizione}"></td>
         </tr>
     </table>
-    <form action="/ricerca" method="GET">
-        <input type="text" name="nome">
-        <button type="submit">Cerca</button>
-    </form>
 </body>
 </html>
