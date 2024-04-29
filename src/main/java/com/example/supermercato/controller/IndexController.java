@@ -44,6 +44,7 @@ public class IndexController {
             @RequestParam("id") int idCategoria,
             Model model
     ){
+
         Categoria categoria = categoriaService.getCategoriaById(idCategoria);
         List<Sottocategoria> sottocategorie = sottocategoriaService.getOfferte(idCategoria);
         List<Prodotto> prodotti = prodottoService.getProdotti();
@@ -54,7 +55,7 @@ public class IndexController {
     }
 
     @GetMapping("/ricerca")
-    public String ricerca(@RequestParam("nome") String nome, Model model) {
+    public String ricerca(@RequestParam("nome") String nome, Model model, @RequestParam("id") int idCategoria) {
 
         List<Categoria> risultati = categoriaService.ricercaProdotto(nome);
         model.addAttribute("risultati", risultati);
