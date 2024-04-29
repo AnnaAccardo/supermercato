@@ -33,8 +33,8 @@ public class CategoriaServiceImpl implements CategoriaService{
         categoriaDao.deleteById(idCategoria);
     }
 
-    public List<Categoria> ricercaProdotto(String nome) {
-
-        return categoriaDao.findByNomeContaining(nome);
+    @Override
+    public Categoria getCategoriaByNome(String nome) {
+        return categoriaDao.findByNome(nome);
     }
 }

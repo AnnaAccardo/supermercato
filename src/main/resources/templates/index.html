@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>Home Page</title>
 </head>
+
+<body>
 <form action="/ricerca" method="GET">
     <input type="text" name="nome">
     <button type="submit">Cerca</button>
 </form>
-<body>
+    <p th:if="${errorericerca != null}" th:text="'Errore nella ricerca'" th:style="'color:red'"></p>
     <h5>Scegli la Categoria per le Offerte</h5>
     <table>
         <tr th:each="categoria : ${categorie}" >

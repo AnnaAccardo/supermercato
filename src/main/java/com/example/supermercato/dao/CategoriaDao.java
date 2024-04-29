@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CategoriaDao extends CrudRepository<Categoria, Integer> {
 
-    List<Categoria> findByNomeContaining(String nome);
+    Categoria findByNome(String nome);
 }

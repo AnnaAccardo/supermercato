@@ -9,5 +9,5 @@ public interface CategoriaService {
     List<Categoria> getCategorie();
     void registraCategoria(Categoria categoria);
     void cancellaCategoria(int idCategoria);
-    public List<Categoria> ricercaProdotto(String nome);
+    Categoria getCategoriaByNome(String nome);
 }

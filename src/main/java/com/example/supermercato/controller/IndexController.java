@@ -29,13 +29,14 @@ public class IndexController {
 
     @GetMapping
     public String getPage(
-            Model model
+            Model model,
+            @RequestParam(name = "errorericerca", required = false) String erroreRicerca
     ){
         List<Prodotto> prodotti = prodottoService.getProdotti();
         List<Categoria> categorie = categoriaService.getCategorie();
         model.addAttribute("categorie", categorie);
         model.addAttribute("prodotti", prodotti);
-
+        model.addAttribute("errorericerca", erroreRicerca);
         return "index";
     }
 
@@ -55,10 +56,14 @@ public class IndexController {
     }
 
     @GetMapping("/ricerca")
-    public String ricerca(@RequestParam("nome") String nome, Model model, @RequestParam("id") int idCategoria) {
+    public String ricerca(@RequestParam("nome") String nome, Model model) {
+        Categoria categoria = categoriaService.getCategoriaByNome(nome);
+        int idCategoria = 0;
 
-        List<Categoria> risultati = categoriaService.ricercaProdotto(nome);
-        model.addAttribute("risultati", risultati);
-        return "risultati";
+        if(categoria != null){
+            idCategoria = categoria.getId();
+            return "redirect:/offerte?id=" + idCategoria;
+        }
+           return "redirect:/?errorericerca";
     }
 }
