@@ -1,9 +1,6 @@
 package com.example.supermercato.controller;
 
-import com.example.supermercato.model.OfferteInArrivo;
-import com.example.supermercato.model.Prodotto;
-import com.example.supermercato.model.Sottocategoria;
-import com.example.supermercato.model.ValoreOfferta;
+import com.example.supermercato.model.*;
 import com.example.supermercato.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +45,11 @@ public class AdminProdottiController {
             HttpSession session
     ){
 
-
         if(session.getAttribute("admin") == null)
             return "redirect:/loginadmin";
+        Admin admin = (Admin) session.getAttribute("admin");
+        model.addAttribute("admin", admin);
+
         List<Prodotto> prodotti = prodottoService.getProdotti();
         model.addAttribute("prodotti", prodotti);
 

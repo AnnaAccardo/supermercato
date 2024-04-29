@@ -5,6 +5,7 @@
     <title>Area Admin - Libri</title>
 </head>
 <body>
+ <h1 th:text="'Benvenuto ' + ${admin.nome} + ' ' + ${admin.cognome}"></h1>
 <h2>PRODOTTI</h2>
 <table>
     <tr th:each="prodotto : ${prodotti}">
