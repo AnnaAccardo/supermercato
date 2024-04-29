@@ -60,6 +60,9 @@
         <td th:text="${sottocategoria.categoria.nome}"></td>
         <td th:text="${sottocategoria.statoOfferta == true ? 'Attiva' : 'Non Attiva'}"></td>
         <td th:text="${sottocategoria.statoOfferta == false ? '--' : sottocategoria.valoreOfferta.valore + '%'}"></td>
+        <td>
+            <a th:href="@{/adminprodotti/disattivaofferta(idSott=${sottocategoria.id})}">Disattiva Offerta</a>
+        </td>
     </tr>
 </table>
 

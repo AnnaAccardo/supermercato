@@ -11,5 +11,5 @@ public interface SottocategoriaService {
     List<Sottocategoria> getOfferte(int idCategoria);
     void registraSottocategoria(Sottocategoria sottocategoria);
     void cancellaSottocategoria(int idSottocategoria);
-
+    void disattivaOfferta(int idSottocategoria);
 }

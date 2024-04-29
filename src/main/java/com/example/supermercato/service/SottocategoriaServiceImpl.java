@@ -41,4 +41,13 @@ public class SottocategoriaServiceImpl implements SottocategoriaService{
     public void cancellaSottocategoria(int idSottocategoria) {
         sottocategoriaDao.deleteById(idSottocategoria);
     }
+
+    @Override
+    public void disattivaOfferta(int idSottocategoria) {
+        Sottocategoria sottocategoria = sottocategoriaDao.findById(idSottocategoria).get();
+
+        sottocategoria.setValoreOfferta(null);
+        sottocategoria.setStatoOfferta(false);
+        sottocategoriaDao.save(sottocategoria);
+    }
 }

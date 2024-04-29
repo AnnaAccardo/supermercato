@@ -120,4 +120,12 @@ public class AdminProdottiController {
         offerteInArrivoService.attivaOfferta(idOff, idSott, idVal);
         return "redirect:/adminprodotti";
     }
+
+    @GetMapping("/disattivaofferta")
+    public String disattivaOfferta(
+        @RequestParam("idSott") int idSott
+    ){
+        sottocategoriaService.disattivaOfferta(idSott);
+        return "redirect:/adminprodotti";
+    }
 }
