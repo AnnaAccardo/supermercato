@@ -48,7 +48,7 @@
 
 <br>
 <br>
-<h2>MARCHE</h2>
+<h2>GESTIONE OFFERTE</h2>
 <table>
     <tr>
         <td>Marca</td>
@@ -104,10 +104,33 @@
 
         </option>
     </select>
-    <input type="date" name="datainizio" th:value="${offertainarrivo.dataInizio}" required>
-    <input type="date" name="datafine" th:value="${offertainarrivo.dataFine}" required>
+    <input type="date" name="datainizio" th:value="${offertainarrivo.dataInizio}" required min="yyyy-mm-dd">
+    <input type="date" name="datafine" th:value="${offertainarrivo.dataFine}" required onchange="controlloData()">
 
     <input type="submit" value="Registra">
 </form>
+    <script>
+        var oggi = new Date();
+        var giorno = oggi.getDate();
+        var mese = oggi.getMonth()+1;
+        var anno = oggi.getFullYear();
+
+        var giornoStringa = giorno < 10 ? '0' + giorno : giorno;
+        var meseStringa = mese < 10 ? '0' + mese : mese;
+
+        var dataMinima = anno + '-' + meseStringa + '-' + giornoStringa;
+
+        document.getElementsByName("datainizio")[0].min = dataMinima;
+
+        function controlloData() {
+            var dataInizio = document.getElementsByName("datainizio")[0].value;
+            var dataFine = document.getElementsByName("datafine")[0].value;
+            if (dataInizio > dataFine) {
+                alert("La data di fine deve essere successiva alla data di inizio");
+                document.getElementsByName("datafine")[0].value = "";
+            }
+        }
+
+    </script>
 </body>
 </html>
