@@ -8,30 +8,30 @@
     <title>JAITA Supermercato</title>
     <!--Link di Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-       
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
 
     <script>
         function setButtonText(text) {
             document.getElementById("dropdownMenuButton").textContent = text;
         }
     </script>
-     <style>
+    <style>
         /* Stili per i bottoni "Dettaglio" */
         .btn-danger {
             margin-right: 10px;
             /* Sposta i bottoni verso destra di 10px */
             background-color: #8f0000;
             /* Imposta il colore di sfondo */
-            /* Aggiungi altri stili CSS secondo necessità */
-            color: white;   
+            /* Aggiungi altri stili CSS secondo necessitÃ  */
+            color: white;
         }
 
         .prezzi {
@@ -46,94 +46,94 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg container-fluid">
-        <a class="navbar-brand" th:href="@{/}"><img
-                src="img/jaitasupermercati.png"
-                alt="Supermercato JAITA 111" /></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mia_nav">
-            <form action="/offerte/ricerca" method="get" class="d-flex ms-auto">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+<nav class="navbar navbar-expand-lg container-fluid">
+    <a class="navbar-brand" th:href="@{/}"><img
+            src="img/jaitasupermercati.png"
+            alt="Supermercato JAITA 111" /></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mia_nav">
+        <form action="/offerte/ricerca" method="get" class="d-flex ms-auto">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Categorie
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li th:each="cat : ${categorie}">
-                            <a class="dropdown-item" th:href="@{/offerte(id=${cat.id})}" th:text="${cat.nome}">Categoria</a>
-                            <!--
-                            <ul class="submenu">
-                                <li th:each="sottocategoria : ${sottocategorie}" th:if="${sottocategoria.categoria.id == cat.id}">
-                                    <a class="dropdown-item" th:text="${sottocategoria.marca}">Sottocategoria</a>
-                                </li>
-                            </ul>
-                            -->
-                        </li>
-                    </ul>
-                </div>
-                <input class="form-control me-2" type="search" placeholder="Cerca prodotto" aria-label="Search" name="prodottocercato">
-                <button id="searchButton" class="btn btn-outline-success" type="submit">Cerca</button>
-            </form>
+                    Categorie
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li th:each="cat : ${categorie}">
+                        <a class="dropdown-item" th:href="@{/offerte(id=${cat.id})}" th:text="${cat.nome}">Categoria</a>
+                        <!--
+                        <ul class="submenu">
+                            <li th:each="sottocategoria : ${sottocategorie}" th:if="${sottocategoria.categoria.id == cat.id}">
+                                <a class="dropdown-item" th:text="${sottocategoria.marca}">Sottocategoria</a>
+                            </li>
+                        </ul>
+                        -->
+                    </li>
+                </ul>
+            </div>
+            <input class="form-control me-2" type="search" placeholder="Cerca prodotto" aria-label="Search" name="prodottocercato">
+            <button id="searchButton" class="btn btn-outline-success" type="submit">Cerca</button>
+        </form>
 
-        </div>
-        <div class="collapse navbar-collapse justify-content-end" id="mia_nav1">
+    </div>
+    <div class="collapse navbar-collapse justify-content-end" id="mia_nav1">
 
-            <ul class="navbar-nav">
-                <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
-                <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
-                <li class="navbar-item"><a class="nav-link" th:href="@{/inArrivo}">In Arrivo</a></li>
-                <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
-                <li class="navbar-item"><a class="nav-link" th:href="@{/loginadmin}">Login</a></li>
-            </ul>
-        </div>
-    </nav>
-    <article>
+        <ul class="navbar-nav">
+            <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+            <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
+            <li class="navbar-item"><a class="nav-link" th:href="@{/inArrivo}">In Arrivo</a></li>
+            <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
+            <li class="navbar-item"><a class="nav-link" th:href="@{/loginadmin}">Login</a></li>
+        </ul>
+    </div>
+</nav>
+<article>
 
-        <div class="container" id="containercard">
-            <div class="row">
+    <div class="container" id="containercard">
+        <div class="row">
 
-                <div class="col-md-3" th:each="prodotto, iterStat : ${prodotti}" th:if="${prodotto.sottocategoria.statoOfferta == true}">
-                    <div class="card text-dark bg-light mb-3 h-100" style="max-width: 18rem;">
-                        <div class="card-header grassetto" th:text="${prodotto.sottocategoria.marca} + ' - ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'">Marca e Sconto</div>
-                        <img class="card-img-top"
-                             th:src="@{${prodotto.immagine == null ? '/img/markerImage.png' : prodotto.immagine}}"
-                            alt="immagine prodotto" />
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${prodotto.nome}">Prodotto</h5>
-                            <p class="card-text" th:text="${prodotto.descrizione}">Descrizione</p>
-                        </div>
-                        <div class="card-footer">
-                            <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}" th:style="'text-decoration: line-through; font-style: italic;'">Prezzo</span>
-                            <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 0, 'POINT', 2, 'COMMA')} + ' euro'">Prezzo Scontato</span>
-                            <!-- <a href="dettaglio.html" class="btn btn-danger" style="width:50%; " >Dettaglio</a> -->
-                        </div>
+            <div class="col-md-3 mb-3" th:each="prodotto, iterStat : ${prodotti}" th:if="${prodotto.sottocategoria.statoOfferta == true}">
+                <div class="card text-dark bg-light mb-3 h-100" style="max-width: 18rem;">
+                    <div class="card-header grassetto" th:text="${prodotto.sottocategoria.marca} + ' - ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'">Marca e Sconto</div>
+                    <img class="card-img-top"
+                         th:src="@{${prodotto.immagine == null ? '/img/markerImage.png' : prodotto.immagine}}"
+                         alt="immagine prodotto" />
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${prodotto.nome}">Prodotto</h5>
+                        <p class="card-text" th:text="${prodotto.descrizione}">Descrizione</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}" th:style="'text-decoration: line-through; font-style: italic;'">Prezzo</span>
+                        <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 0, 'POINT', 2, 'COMMA')} + ' euro'">Prezzo Scontato</span>
+                        <!-- <a href="dettaglio.html" class="btn btn-danger" style="width:50%; " >Dettaglio</a> -->
                     </div>
                 </div>
             </div>
         </div>
-    </article>
+    </div>
+</article>
 
-    <footer class="footer">
-        <div class="container overflow-hidden">
-            <div class="row gy-3 gy-md-5 gy-xl-0 align-items-sm-center">
-                <div class="col-xs-12 col-sm-6 col-xl-3 order-0 order-xl-0">
-                </div>
+<footer class="footer">
+    <div class="container overflow-hidden">
+        <div class="row gy-3 gy-md-5 gy-xl-0 align-items-sm-center">
+            <div class="col-xs-12 col-sm-6 col-xl-3 order-0 order-xl-0">
+            </div>
 
-                <div class="col-xs-12 col-xl-6 order-2 order-xl-1">
-                    <ul class="nav justify-content-center">
-                        <li class="nav-item">
-                            <a class="nav-link link-secondary px-2 px-md-3" href="#!">Numero Assistenza: 0818993839</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link link-secondary px-2 px-md-3" href="#!">Partita IVA: P.IVA123456789</a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="col-xs-12 col-xl-6 order-2 order-xl-1">
+                <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link link-secondary px-2 px-md-3" href="#!">Numero Assistenza: 0818993839</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-secondary px-2 px-md-3" href="#!">Partita IVA: P.IVA123456789</a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
 </body>
 
