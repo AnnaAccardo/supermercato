@@ -61,12 +61,13 @@
         <!-- navbar-collapse: si collega al contesto della navbar -->
         <!-- justify-content-end: posiziona il contenuto del div a destra -->
         <ul class="navbar-nav">
-            <!-- adatto un elenco HTML alla classe di Bootstrap opportuna per la navbar-->
-            <li class="navbar-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="navbar-item"><a class="nav-link" href="/offerte">Offerte</a></li>
-            <li class="navbar-item"><a class="nav-link" href="/offerteinarrivo">In Arrivo</a></li>
-            <li class="navbar-item"><a class="nav-link" href="areaAmministrativa.html">Area Amministrativa</a></li>
-            <li class="navbar-item"><a class="nav-link" href="/loginadmin">Login</a></li>
+
+            <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+            <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
+            <li class="navbar-item"><a class="nav-link" th:href="@{/offerteinarrivo}">In Arrivo</a></li>
+            <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
+            <li class="navbar-item"><a class="nav-link" th:href="@{/loginadmin}">Login</a></li>
+
         </ul>
     </div>
 </nav>
