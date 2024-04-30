@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequestMapping("/adminprodotti")
+@RequestMapping("/areaAmministrativa")
 public class AdminProdottiController {
 
     @Autowired
@@ -46,7 +46,7 @@ public class AdminProdottiController {
     ){
 
         if(session.getAttribute("admin") == null)
-            return "redirect:/loginadmin";
+            return "redirect:/login";
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
 
@@ -68,7 +68,7 @@ public class AdminProdottiController {
         List<ValoreOfferta> valoreOfferta = valoreOffertaService.getValoreOfferta();
         model.addAttribute("valoreofferta", valoreOfferta);
 
-        return "adminprodotti";
+        return "areaAmministrativa";
     }
 
     @PostMapping
@@ -80,7 +80,7 @@ public class AdminProdottiController {
 
         prodottoService.registraProdotto(prodotto, nome, prezzo, descrizione, idSottocategorie, immagine);
 
-        return "redirect:/adminprodotti";
+        return "redirect:/areaAmministrativa";
     }
 
     @PostMapping("/aggiungiofferta")
@@ -91,14 +91,14 @@ public class AdminProdottiController {
             @RequestParam("datafine") LocalDate dataFine
             ){
         offerteInArrivoService.aggiungiOffertaInArrivo(offertaInArrivo, idSottocategorie, idValoreOfferta, dataInizio, dataFine);
-        return "redirect:/adminprodotti";
+        return "redirect:/areaAmministrativa";
     }
 
     @GetMapping("/elimina")
     public String eliminaProdotto(@RequestParam("id") int id) {
 
         prodottoService.cancellaProdotto(id);
-        return "redirect:/adminprodotti";
+        return "redirect:/areaAmministrativa";
     }
 
     @GetMapping("/eliminaOff")
@@ -106,7 +106,7 @@ public class AdminProdottiController {
             @RequestParam("idOff") int idOff
     ){
         offerteInArrivoService.cancellaOffertaInArrivo(idOff);
-        return "redirect:/adminprodotti";
+        return "redirect:/areaAmministrativa";
     }
 
     @GetMapping("/attivaofferta")
@@ -117,7 +117,7 @@ public class AdminProdottiController {
     ){
 
         offerteInArrivoService.attivaOfferta(idOff, idSott, idVal);
-        return "redirect:/adminprodotti";
+        return "redirect:/areaAmministrativa";
     }
 
     @GetMapping("/disattivaofferta")
@@ -125,6 +125,6 @@ public class AdminProdottiController {
         @RequestParam("idSott") int idSott
     ){
         sottocategoriaService.disattivaOfferta(idSott);
-        return "redirect:/adminprodotti";
+        return "redirect:/areaAmministrativa";
     }
 }
