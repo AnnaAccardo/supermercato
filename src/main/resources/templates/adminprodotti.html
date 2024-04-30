@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area Amministrativa</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet" />
     <style>
         .container {
+            margin-top: 20px; /* Aggiunta del margine superiore */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -79,76 +77,19 @@
             text-decoration: none;
         }
     </style>
-
-    <script>
-        function updateButtonText(buttonId, selectedText) {
-            document.getElementById(buttonId).innerText = selectedText;
-        }
-
-        function addOffer() {
-            var product = document.getElementById("dropdownMenuButton1").innerText;
-            var offer = document.getElementById("dropdownMenuButton2").innerText;
-            var when = document.getElementById("dropdownMenuButton3").innerText;
-            var offerText = product + " - " + offer;
-
-            var offerObj = {
-                product: product,
-                offer: offer
-            };
-
-            var offers = JSON.parse(localStorage.getItem(when)) || [];
-            offers.push(offerObj);
-            localStorage.setItem(when, JSON.stringify(offers));
-
-            displayOffers();
-        }
-
-        function removeOffer(offerText, when) {
-            var offers = JSON.parse(localStorage.getItem(when)) || [];
-            offers = offers.filter(function(offer) {
-                return offer.product + " - " + offer.offer !== offerText;
-            });
-            localStorage.setItem(when, JSON.stringify(offers));
-            displayOffers();
-        }
-
-        function displayOffers() {
-            var activeOffersDiv = document.getElementById("activeOffers");
-            var upcomingOffersDiv = document.getElementById("upcomingOffers");
-            activeOffersDiv.innerHTML = "";
-            upcomingOffersDiv.innerHTML = "";
-
-            var activeOffers = JSON.parse(localStorage.getItem("Offerte attive")) || [];
-            var upcomingOffers = JSON.parse(localStorage.getItem("Offerte in arrivo")) || [];
-
-            activeOffersDiv.innerHTML = "<h3>OFFERTE ATTIVE</h3>";
-            upcomingOffersDiv.innerHTML = "<h3>OFFERTE IN ARRIVO</h3>";
-
-            activeOffers.forEach(function (offer) {
-                activeOffersDiv.innerHTML += "<p>" + offer.product + " - " + offer.offer + " <button class='btn btn-danger btn-sm' onclick='removeOffer(\"" + offer.product + " - " + offer.offer + "\", \"Offerte attive\")'>X</button></p>";
-            });
-
-            upcomingOffers.forEach(function (offer) {
-                upcomingOffersDiv.innerHTML += "<p>" + offer.product + " - " + offer.offer + " <button class='btn btn-danger btn-sm' onclick='removeOffer(\"" + offer.product + " - " + offer.offer + "\", \"Offerte in arrivo\")'>X</button></p>";
-            });
-        }
-
-        window.onload = displayOffers;
-    </script>
-    
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg container-fluid">
-        <!-- navbar: classe per i menù di navigazione -->
-        <!-- navbar-expand-lg: definisco il breakpoint ove voglio che il menù collassi in un button/dropdown -->
-        <!-- Non uso fixed-top: menù fissato in alto allo scorrimento della pagina -->
-        <a class="navbar-brand" href="index.html"><img src="jaitasupermercati.png" alt="Supermercato JAITA 111" /></a>
-        <!-- navbar-brand individua il titolo o il logo del sito -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
-            <span class="navbar-toggler-icon"></span> <!-- pulsantino con le tre lineette in orizzontale -->
-        </button>
-
+<nav class="navbar navbar-expand-lg container-fluid">
+    <!-- navbar: classe per i menù di navigazione -->
+    <!-- navbar-expand-lg: definisco il breakpoint ove voglio che il menù collassi in un button/dropdown -->
+    <!-- Non uso fixed-top: menù fissato in alto allo scorrimento della pagina -->
+    <a class="navbar-brand" href="index.html"><img src="jaitasupermercati.png" alt="Supermercato JAITA 111" /></a>
+    <!-- navbar-brand individua il titolo o il logo del sito -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
+        <span class="navbar-toggler-icon"></span> <!-- pulsantino con le tre lineette in orizzontale -->
+    </button>
+    
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav">
             <!-- collapse: si collega col data-bs-toggle del button -->
             <!-- navbar-collapse: si collega al contesto della navbar -->
@@ -161,78 +102,66 @@
                 <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
 
-            </ul>
-        </div>
-    </nav>
+        </ul>
+    </div>
+</nav>
 
-    <div class="container">
-        <div class="offerte-container">
-            <div class="square account-info">
-                <h3>Informazioni Account</h3>
-                <p>Benvenuto</p>
-                <p th:text="${admin.nome} + ' ' + ${admin.cognome}"></p>
-                <!-- Aggiungi altre informazioni dell'account qui -->
-            </div>
-            <div class="square">
-                <h3>Organizza le offerte</h3>
-                <div class="row">
-                    <div class="col">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Seleziona prodotto
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li th:each="prodotto : ${prodotti}"><a class="dropdown-item" href="#" th:text="${prodotto.nome}" onclick="updateButtonText('dropdownMenuButton1', '${prodotto.nome}')">Prodotto 1</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton1', 'Prodotto 2')">Prodotto 2</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton1', 'Prodotto 3')">Prodotto 3</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Seleziona offerta
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton2', '5%')">5%</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton2', '10%')">10%</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton2', '15%')">15%</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton2', '20%')">20%</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton2', '50%')">50%</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Dove?
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton3', 'Offerte attive')">Offerte attive</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton3', 'Offerte in arrivo')">Offerte in arrivo</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <button class="btn btn-primary" onclick="addOffer()">OK</button>
-                    </div>
+<div class="container">
+    <div class="offerte-container">
+        <div class="square account-info" style="margin-top:20px" >
+            <h3>Informazioni Account</h3>
+            <p>Benvenuto</p>
+            <p th:text="${admin.nome} + ' ' + ${admin.cognome}"></p>
+            <!-- Aggiungi altre informazioni dell'account qui -->
+        </div>
+        <div class="square">
+            <h3>GESTIONE OFFERTE</h3>
+            <div class="row">
+                <div class="col">
+                    <p>Marca</p>
+                </div>
+                <div class="col">
+                    <p>Categoria</p>
+                </div>
+                <div class="col">
+                    <p>Stato Offerta</p>
+                </div>
+                <div class="col">
+                    <p>Disattiva Offerta</p>
                 </div>
             </div>
-            <div class="square">
-                <div class="row">
-                    <div class="col-6">
-                        <div id="activeOffers"></div>
-                    </div>
-                    <div class="col-6">
-                        <div id="upcomingOffers"></div>
-                    </div>
+        </div>
+        <div class="square">
+            <h3>OFFERTE IN ARRIVO</h3>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Marca">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Offerta">
+                </div>
+                <div class="col">
+                    <input type="date" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="date" class="form-control">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <p>Modifica</p>
+                </div>
+                <div class="col">
+                    <p>Elimina</p>
+                </div>
+                <div class="col">
+                    <p>Rendi Attiva</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 </body>
 
 </html>
