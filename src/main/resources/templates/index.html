@@ -23,21 +23,15 @@
 
 <body>
     <nav class="navbar navbar-expand-lg container-fluid">
-        <!-- navbar: classe per i menù di navigazione -->
-        <!-- navbar-expand-lg: definisco il breakpoint ove voglio che il menù collassi in un button/dropdown -->
-        <!-- Non uso fixed-top: menù fissato in alto allo scorrimento della pagina -->
 
         <a class="navbar-brand" href="#"><img src="img/jaitasupermercati.png" alt="Supermercato JAITA 111" /></a>
-        <!-- navbar-brand individua il titolo o il logo del sito -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
-            <span class="navbar-toggler-icon"></span> <!-- pulsantino con le tre lineette in orizzontale -->
+            <span class="navbar-toggler-icon"></span>
         </button>
         </div>
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav">
-            <!-- collapse: si collega col data-bs-toggle del button -->
-            <!-- navbar-collapse: si collega al contesto della navbar -->
-            <!-- justify-content-end: posiziona il contenuto del div a destra -->
-            <ul class="navbar-nav"> <!-- adatto un elenco HTML alla classe di Bootstrap opportuna per la navbar-->
+
+            <ul class="navbar-nav">
                 <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerteinarrivo}">In Arrivo</a></li>
@@ -47,13 +41,11 @@
         </div>
     </nav>
 
-    <!-- Banner con immagine -->
 
     <div class="row" style="object-fit: cover;">
         <a href="offerte.html"><img th:src="@{/img/banner.png}" class="img-fluid"></a>
     </div>
 
-    <!--Sezione chi siamo-->
     <div class="container">
         <div class="row mt-5 my-4 text-center">
             <h2 style="position: relative; display: inline-block;">Offerte in evidenza
@@ -76,7 +68,6 @@
 
 
 
-    <!--Sezione I nostri punti vendita -->
     <div class="container">
         <div class="row mt-5 my-4">
             <h2 style="position: relative; display: inline-block;">I nostri punti vendita
@@ -84,25 +75,21 @@
                     style="position: absolute; left: 0; bottom: -5px; width: 300px; height: 5px; background-color: #FFD200"></span>
             </h2>
 
-
-
         </div>
         <div class="row">
             <div class="col-md-4">
-                <p>
                 <h4>Napoli</h4>
-                <p>P.za Municipio, 84</p> <br>
+                <p><a href="#!" id="sedeNapoli" onclick="setMappa(event)">P.za Municipio, 84</a> </p> <br>
                 <h4>Milano</h4>
-                <p>Via Montenapoleone, 7</p> <br>
+                <p><a href="#!" id="sedeMilano" onclick="setMappa(event)">Via Montenapoleone, 7</a></p> <br>
                 <h4>Torino</h4>
-                <p>Via Roma, 25</p><br>
+                <p><a href="#!" id="sedeTorino" onclick="setMappa(event)">Via Roma, 25</a></p><br>
                 <h4>Roma</h4>
-                Via Alighieri, 11
-                </p>
+                <p><a href="#!" id="sedeRoma" onclick="setMappa(event)">Via Alighieri, 11</a></p>
             </div>
             <div class="col-md-8">
                 <div class="embed-responsive embed-responsive-16by9" style="height: 50vh;">
-                    <iframe
+                    <iframe id="mappaGoogle"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.1571289609637!2d14.255963615773147!3d40.8524488409193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b90a65ab67b35%3A0x7a07b7edcc1185aa!2sPiazza%20Municipio!5e0!3m2!1sen!2sit!4v1649244531943!5m2!1sen!2sit"
                         frameborder="0" style="border:0; width: 100%; height: 83%;" allowfullscreen=""
                         aria-hidden="false" tabindex="0" class="embed-responsive-item"></iframe>
@@ -115,10 +102,6 @@
 
     </div>
 
-
-    <!--Sezione call to action-->
-    <!-- Barra gialla con icone -->
-    <!-- Barra gialla con icone e immagini -->
     <div class="container text-center">
         <div class="row mt-5 my-4">
             <h2 style="position: relative; display: inline-block;">Scopri
@@ -130,7 +113,7 @@
 
     <div class="container-fluid bg-warning mt-4 py-3">
 
-        <div class="row justify-content-center "> <!-- Utilizzo gx-2 per ridurre lo spazio tra le colonne -->
+        <div class="row justify-content-center ">
             <div class="col-md-3 text-center">
                 <img src="img/IconaOfferte.png" alt="Home" class="img-fluid custom-img mb-3 mt-5">
                 <h4 class="mb-4">Prodotti in offerta</h4>
@@ -170,5 +153,23 @@
         </div>
     </footer>
 </body>
-
+<script>
+    var mappa = document.getElementById("mappaGoogle");
+    function setMappa(event){
+        switch(event.target.id){
+            case "sedeNapoli":
+                mappa.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.1571289609637!2d14.255963615773147!3d40.8524488409193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133b90a65ab67b35%3A0x7a07b7edcc1185aa!2sPiazza%20Municipio!5e0!3m2!1sen!2sit!4v1649244531943!5m2!1sen!2sit";
+                break;
+            case "sedeMilano":
+                mappa.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5596.174278094274!2d9.192698976822703!3d45.46804853318119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6b014e60bd9%3A0x1687d36137722aff!2sVia%20Monte%20Napoleone%2C%207%2C%2020121%20Milano%20MI!5e0!3m2!1sit!2sit!4v1714491552169!5m2!1sit!2sit";
+                break;
+            case "sedeTorino":
+                mappa.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2817.8191972775107!2d7.813271076807277!3d45.06917865970762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478874f6071bfccb%3A0x54534d92fca0c3e9!2sVia%20Roma%2C%2025%2C%2010020%20Baldissero%20Torinese%20TO!5e0!3m2!1sit!2sit!4v1714491675911!5m2!1sit!2sit";
+                break;
+            case "sedeRoma":
+                mappa.src = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5960.376794614675!2d12.49931137668629!3d41.67327447821257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1325924b77b85b7f%3A0x8c5d61b2a219cb79!2sViale%20Dante%20Alighieri%2C%2011%2C%2000071%20Pomezia%20RM!5e0!3m2!1sit!2sit!4v1714491692916!5m2!1sit!2sit";
+                break;
+        }
+    }
+</script>
 </html>
