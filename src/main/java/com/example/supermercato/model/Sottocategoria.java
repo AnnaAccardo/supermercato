@@ -51,7 +51,7 @@ public class Sottocategoria {
         this.categoria = categoria;
     }
 
-    public boolean isStatoOfferta() {
+    public boolean getStatoOfferta() {
         return statoOfferta;
     }
 
