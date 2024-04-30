@@ -41,12 +41,4 @@ public class AdminServiceImpl implements AdminService {
         adminDao.save(admin);
     }
 
-    @Override
-    public boolean controlloUsername(String username) {
-
-        if(adminDao.findByUsername(username) == null)
-            return true;
-        return false;
-    }
-
 }

@@ -7,5 +7,4 @@ public interface AdminDao extends CrudRepository<Admin, Integer> {
 
     Admin findByUsernameAndPassword(String username, String password);
 
-    Admin findByUsername(String username);
 }
