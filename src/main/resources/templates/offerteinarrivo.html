@@ -48,7 +48,7 @@
     <!-- navbar: classe per i menù di navigazione -->
     <!-- navbar-expand-lg: definisco il breakpoint ove voglio che il menù collassi in un button/dropdown -->
     <!-- Non uso fixed-top: menù fissato in alto allo scorrimento della pagina -->
-    <a class="navbar-brand" href="index.html"><img src="jaitasupermercati.png" alt="Supermercato JAITA 111" /></a>
+    <a class="navbar-brand" href="#"><img src="img/jaitasupermercati.png" alt="Supermercato JAITA 111" /></a>
 
     <!-- navbar-brand individua il titolo o il logo del sito -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
@@ -62,20 +62,19 @@
         <!-- justify-content-end: posiziona il contenuto del div a destra -->
         <ul class="navbar-nav">
             <!-- adatto un elenco HTML alla classe di Bootstrap opportuna per la navbar-->
-            <li class="navbar-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="navbar-item"><a class="nav-link" href="offerte.html">Offerte</a></li>
-            <li class="navbar-item"><a class="nav-link" href="offerteinarrivo.html">In Arrivo</a></li>
+            <li class="navbar-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="navbar-item"><a class="nav-link" href="/offerte">Offerte</a></li>
+            <li class="navbar-item"><a class="nav-link" href="/offerteinarrivo">In Arrivo</a></li>
             <li class="navbar-item"><a class="nav-link" href="areaAmministrativa.html">Area Amministrativa</a></li>
-            <li class="navbar-item"><a class="nav-link" href="login.html">Login</a></li>
+            <li class="navbar-item"><a class="nav-link" href="/loginadmin">Login</a></li>
         </ul>
     </div>
 </nav>
+<div class="row" style="object-fit: cover;">
+    <a href="offerte.html"><img th:src="@{/img/Bannerinarrivo.png}" class="img-fluid"></a>
+</div>
 <br />
-<h1 style="text-align: center;"> BANNER PUBBLICITARIO NEL MEZZO</h1>
-<br />
-<br />
-<h1 style="text-align: center;"> Marche prossimamente in offerta!</h1>
-<br />
+
 
 <article class="container-fluid">
     <div class="row">
