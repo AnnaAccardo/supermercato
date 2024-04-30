@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")
@@ -29,7 +30,9 @@ public class IndexController {
     public String getPage(
             Model model
     ){
-        List<Prodotto> prodotti = prodottoService.getProdotti();
+        List<Prodotto> prodotti = prodottoService.getProdotti().stream()
+                                                                .filter(p -> p.getSottocategoria().getStatoOfferta())
+                                                                .collect(Collectors.toList());
         List<Categoria> categorie = categoriaService.getCategorie();
         model.addAttribute("categorie", categorie);
         model.addAttribute("prodotti", prodotti);
