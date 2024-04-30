@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -52,8 +52,8 @@
             navbar-expand-lg: definisco il breakpoint ove voglio che il menù collassi in un button/dropdown
             Non uso fixed-top: menù fissato in alto allo scorrimento della pagina
         -->
-        <a class="navbar-brand" href="index.html"><img
-                src="jaitasupermercati.png"
+        <a class="navbar-brand" th:href="@{/}"><img
+                src="img/jaitasupermercati.png"
                 alt="Supermercato JAITA 111" /></a>
         <!-- navbar-brand individua il titolo o il logo del sito -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
@@ -68,26 +68,15 @@
                         Categorie
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#" onclick="setButtonText('Categoria 1')">Categoria 1</a>
+                        <li th:each="cat : ${categorie}">
+                            <a class="dropdown-item" th:href="@{/offerte(id=${cat.id})}" th:text="${cat.nome}">Categoria</a>
+                            <!--
                             <ul class="submenu">
-                                <li><a class="dropdown-item" href="#" onclick="setButtonText('Sottocategoria 1.1')">Sottocategoria 1.1</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="setButtonText('Sottocategoria 1.2')">Sottocategoria 1.2</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="setButtonText('Sottocategoria 1.3')">Sottocategoria 1.3</a></li>
+                                <li th:each="sottocategoria : ${sottocategorie}" th:if="${sottocategoria.categoria.id == cat.id}">
+                                    <a class="dropdown-item" th:text="${sottocategoria.marca}">Sottocategoria</a>
+                                </li>
                             </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="#" onclick="setButtonText('Categoria 2')">Categoria 2</a>
-                            <ul class="submenu">
-                                <li><a class="dropdown-item" href="#" onclick="setButtonText('Sottocategoria 2.1')">Sottocategoria 2.1</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="setButtonText('Sottocategoria 2.2')">Sottocategoria 2.2</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="setButtonText('Sottocategoria 2.3')">Sottocategoria 2.3</a></li>
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item" href="#" onclick="setButtonText('Categoria 3')">Categoria 3</a>
-                            <ul class="submenu">
-                                <li><a class="dropdown-item" href="#" onclick="setButtonText('Sottocategoria 3.1')">Sottocategoria 3.1</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="setButtonText('Sottocategoria 3.2')">Sottocategoria 3.2</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="setButtonText('Sottocategoria 3.3')">Sottocategoria 3.3</a></li>
-                            </ul>
+                            -->
                         </li>
                     </ul>
                 </div>
@@ -96,13 +85,7 @@
             </form>
         </div>
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav1">
-            <!--
-                collapse: si collega col data-bs-toggle del button
-                navbar-collapse: si collega al contesto della navbar
-                justify-content-end: posiziona il contenuto del div a destra
-            -->
             <ul class="navbar-nav">
-                <!-- adatto un elenco HTML alla classe di Bootstrap opportuna per la navbar-->
                 <li class="navbar-item"><a class="nav-link" href="index.html">Home</a></li>
                 <li class="navbar-item"><a class="nav-link" href="offerte.html">Offerte</a></li>
                 <li class="navbar-item"><a class="nav-link" href="inArrivo.html">In Arrivo</a></li>
@@ -114,272 +97,28 @@
     <article>
 
         <div class="container" id="containercard">
-            <!-- Prima riga di card -->
             <div class="row">
-                <div class="col-md-3">
-                    <!-- Prima card -->
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
 
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%; " >Dettaglio</a>
-                            </div>
+                <div class="col-md-3" th:each="prodotto, iterStat : ${prodotti}" th:if="${prodotto.sottocategoria.statoOfferta == true}">
+                    <div class="card text-dark bg-light mb-3 h-100" style="max-width: 18rem;">
+                        <div class="card-header grassetto" th:text="${prodotto.sottocategoria.marca} + ' - ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'">Marca e Sconto</div>
+                        <img class="card-img-top"
+                             th:src="@{${prodotto.immagine == null ? '/img/markerImage.png' : prodotto.immagine}}"
+                            alt="immagine prodotto" />
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${prodotto.nome}">Prodotto</h5>
+                            <p class="card-text" th:text="${prodotto.descrizione}">Descrizione</p>
                         </div>
-                    </div>
-                    <!-- Fine Prima card -->
-                </div>
-                <div class="col-md-3">
-                    <!-- Seconda card -->
-
-                    <!-- Inserisci qui la tua seconda card -->
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <!-- Terza card -->
-                    <!-- Inserisci qui la tua terza card -->
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <!-- Quarta card -->
-                    <!-- Inserisci qui la tua quarta card -->
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Fine Prima riga di card -->
-
-            <!-- Seconda riga di card -->
-
-            <div class="row">
-                <div class="col-md-3">
-                    <!-- Prima card -->
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;">Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fine Prima card -->
-                </div>
-                <div class="col-md-3">
-                    <!-- Seconda card -->
-
-
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <!-- Terza card -->
-
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <!-- Quarta card -->
-
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Terza riga di card -->
-
-            <!-- Prima riga di card -->
-            <div class="row">
-                <div class="col-md-3">
-                    <!-- Prima card -->
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fine Prima card -->
-                </div>
-                <div class="col-md-3">
-                    <!-- Seconda card -->
-
-                    <!-- Inserisci qui la tua seconda card -->
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <!-- Terza card -->
-
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <!-- Quarta card -->
-
-                    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header grassetto">Prodotto 1</div>
-                        <img class="card-img-top"
-                            src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png"
-                            alt="PC portatile" />
-                        <div class="card-body">
-                            <h5 class="card-title">Marca e Descrizione</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Exercitationem pariatur distinctio quisquam a. Asperiores magni reiciendis a atque?
-                                Error, voluptate!</p>
-                            <div>
-                                <span class="prezzi"> 99,99 euro </span>
-                                <a href="dettaglio.html" class="btn btn-danger" style="width:50%;" >Dettaglio</a>
-                            </div>
+                        <div class="card-footer">
+                            <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')}" th:style="'text-decoration: line-through; font-style: italic;'">Prezzo</span>
+                            <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 0, 'POINT', 2, 'COMMA')} + ' euro'">Prezzo Scontato</span>
+                            <!-- <a href="dettaglio.html" class="btn btn-danger" style="width:50%; " >Dettaglio</a> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </article>
-
-
-    <!-- Footer 6 - Bootstrap Brain Component -->
-
-
 
     <footer class="footer">
         <div class="container overflow-hidden">

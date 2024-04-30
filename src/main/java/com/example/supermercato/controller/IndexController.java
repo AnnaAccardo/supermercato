@@ -18,6 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class IndexController {
+
     @Autowired
     private CategoriaService categoriaService;
 
@@ -42,15 +43,20 @@ public class IndexController {
 
     @GetMapping("/offerte")
     public String offerte(
-            @RequestParam("id") int idCategoria,
+            @RequestParam(name = "id", required = false) String idCategoria,
             Model model
     ){
+        List<Categoria> categorie = categoriaService.getCategorie();
+        model.addAttribute("categorie", categorie);
 
-        Categoria categoria = categoriaService.getCategoriaById(idCategoria);
-        List<Sottocategoria> sottocategorie = sottocategoriaService.getOfferte(idCategoria);
-        List<Prodotto> prodotti = prodottoService.getProdotti();
-        model.addAttribute("sottocategorie", sottocategorie);
-        model.addAttribute("categoria", categoria);
+        if(idCategoria != null){
+            Categoria categoria = categoriaService.getCategoriaById(Integer.parseInt(idCategoria));
+            model.addAttribute("categoria", categoria);
+            List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorieByCategoriaId(Integer.parseInt(idCategoria));
+            model.addAttribute("sottocategorie", sottocategorie);
+        }
+
+        List<Prodotto> prodotti = idCategoria == null ? prodottoService.getProdotti() : prodottoService.getProdottiByCategoriaId(Integer.parseInt(idCategoria));
         model.addAttribute("prodotti", prodotti);
         return "offerte";
     }
