@@ -58,7 +58,6 @@ public class IndexController {
     @GetMapping("/ricerca")
     public String ricerca(@RequestParam("nome") String nome, Model model) {
         Categoria categoria = categoriaService.getCategoriaByNome(nome);
-
         int idCategoria = 0;
 
         if(categoria != null){
