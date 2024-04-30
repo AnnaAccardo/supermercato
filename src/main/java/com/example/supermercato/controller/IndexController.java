@@ -18,52 +18,22 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class IndexController {
-    @Autowired
-    private CategoriaService categoriaService;
 
     @Autowired
-    private SottocategoriaService sottocategoriaService;
+    private CategoriaService categoriaService;
 
     @Autowired
     private ProdottoService prodottoService;
 
     @GetMapping
     public String getPage(
-            Model model,
-            @RequestParam(name = "errorericerca", required = false) String erroreRicerca
+            Model model
     ){
         List<Prodotto> prodotti = prodottoService.getProdotti();
         List<Categoria> categorie = categoriaService.getCategorie();
         model.addAttribute("categorie", categorie);
         model.addAttribute("prodotti", prodotti);
-        model.addAttribute("errorericerca", erroreRicerca);
         return "index";
     }
 
-    @GetMapping("/offerte")
-    public String offerte(
-            @RequestParam("id") int idCategoria,
-            Model model
-    ){
-
-        Categoria categoria = categoriaService.getCategoriaById(idCategoria);
-        List<Sottocategoria> sottocategorie = sottocategoriaService.getOfferte(idCategoria);
-        List<Prodotto> prodotti = prodottoService.getProdotti();
-        model.addAttribute("sottocategorie", sottocategorie);
-        model.addAttribute("categoria", categoria);
-        model.addAttribute("prodotti", prodotti);
-        return "offerte";
-    }
-
-    @GetMapping("/ricerca")
-    public String ricerca(@RequestParam("nome") String nome, Model model) {
-        Categoria categoria = categoriaService.getCategoriaByNome(nome);
-        int idCategoria = 0;
-
-        if(categoria != null){
-            idCategoria = categoria.getId();
-            return "redirect:/offerte?id=" + idCategoria;
-        }
-           return "redirect:/?errorericerca";
-    }
 }

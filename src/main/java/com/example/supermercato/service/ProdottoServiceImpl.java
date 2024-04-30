@@ -29,6 +29,16 @@ public class ProdottoServiceImpl implements ProdottoService{
         return (List<Prodotto>) prodottoDao.findBySottocategoriaId(idSottocategoria);
     }
 
+    @Override
+    public List<Prodotto> getProdottiByNome(String nome) {
+        return (List<Prodotto>) prodottoDao.findByNome(nome);
+    }
+
+    @Override
+    public List<Prodotto> getProdottiByCategoriaId(int idCategoria) {
+        return (List<Prodotto>) prodottoDao.findBySottocategoriaCategoriaId(idCategoria);
+    }
+
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     @Override
     public Prodotto getProdottoById(int id) {

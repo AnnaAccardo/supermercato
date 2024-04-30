@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -158,8 +158,8 @@
                 <!-- Non è una pagina HTML! -->
                 <li class="navbar-item"><a class="nav-link" href="offerte.html">Offerte</a></li>
                 <li class="navbar-item"><a class="nav-link" href="inArrivo.html">In Arrivo</a></li>
-                <li class="navbar-item"><a class="nav-link" href="areaAmministrativa.html">Area Amministrativa</a></li>
-                <li class="navbar-item"><a class="nav-link" href="login.html">Login</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/areaAmministrativa}">Area Amministrativa</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
 
             </ul>
         </div>
@@ -170,7 +170,7 @@
             <div class="square account-info">
                 <h3>Informazioni Account</h3>
                 <p>Benvenuto</p>
-                <p>NOME COGNOME</p>
+                <p th:text="${admin.nome} + ' ' + ${admin.cognome}"></p>
                 <!-- Aggiungi altre informazioni dell'account qui -->
             </div>
             <div class="square">
@@ -183,7 +183,7 @@
                                 Seleziona prodotto
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton1', 'Prodotto 1')">Prodotto 1</a></li>
+                                <li th:each="prodotto : ${prodotti}"><a class="dropdown-item" href="#" th:text="${prodotto.nome}" onclick="updateButtonText('dropdownMenuButton1', '${prodotto.nome}')">Prodotto 1</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton1', 'Prodotto 2')">Prodotto 2</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="updateButtonText('dropdownMenuButton1', 'Prodotto 3')">Prodotto 3</a></li>
                             </ul>

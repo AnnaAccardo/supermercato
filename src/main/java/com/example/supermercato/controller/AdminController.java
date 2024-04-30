@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/loginadmin")
 public class AdminController {
 
     @Autowired
@@ -21,17 +21,17 @@ public class AdminController {
     public String getPage(HttpSession session, @RequestParam(name = "error", required = false) String error, Model model) {
 
         if(session.getAttribute("admin") != null)
-            return "redirect:/areaAmministrativa";
+            return "redirect:/adminprodotti";
         model.addAttribute("error", error);
-        return "login";
+        return "loginadmin";
     }
 
     @PostMapping
     public String getPost(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
 
         if(!adminService.loginAdmin(username, password, session))
-            return "redirect:/login?error";
-        return "redirect:/areaAmministrativa";
+            return "redirect:/loginadmin?error";
+        return "redirect:/adminprodotti";
     }
 
 }
