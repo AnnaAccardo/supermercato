@@ -34,12 +34,12 @@ public class OfferteController {
             @RequestParam(name = "ricerca", required = false) String ricerca,
             Model model
     ){
+        Categoria categoria = null;
         List<Categoria> categorie = categoriaService.getCategorie();
         model.addAttribute("categorie", categorie);
 
         if(idCategoria != null){
-            Categoria categoria = categoriaService.getCategoriaById(Integer.parseInt(idCategoria));
-            model.addAttribute("categoria", categoria);
+            categoria = categoriaService.getCategoriaById(Integer.parseInt(idCategoria));
             List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorieByCategoriaId(Integer.parseInt(idCategoria));
             model.addAttribute("sottocategorie", sottocategorie);
         }
@@ -47,10 +47,13 @@ public class OfferteController {
         List<Prodotto> prodotti;
         if(ricerca != null) {
             prodotti = prodottoService.getProdottiByNome(ricerca);
+            if(!prodotti.isEmpty())
+                categoria = categoriaService.getCategoriaById(prodotti.get(0).getSottocategoria().getCategoria().getId());
         }else{
             prodotti = idCategoria == null ? prodottoService.getProdotti() : prodottoService.getProdottiByCategoriaId(Integer.parseInt(idCategoria));
         }
         model.addAttribute("prodotti", prodotti);
+        model.addAttribute("categoria", categoria);
 
         return "offerte";
     }
