@@ -47,29 +47,17 @@
 
 <body>
 <nav class="navbar navbar-expand-lg container-fluid">
-    <a class="navbar-brand" th:href="@{/}"><img
-            src="img/jaitasupermercati.png"
-            alt="Supermercato JAITA 111" /></a>
+    <a class="navbar-brand" th:href="@{/}"><img src="img/jaitasupermercati.png" alt="Supermercato JAITA 111" /></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mia_nav">
         <form action="/offerte/ricerca" method="get" class="d-flex ms-auto">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                    Categorie
-                </button>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" th:text="${categoria == null ? 'Categorie' : categoria.nome}"> </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <li th:each="cat : ${categorie}">
                         <a class="dropdown-item" th:href="@{/offerte(id=${cat.id})}" th:text="${cat.nome}">Categoria</a>
-                        <!--
-                        <ul class="submenu">
-                            <li th:each="sottocategoria : ${sottocategorie}" th:if="${sottocategoria.categoria.id == cat.id}">
-                                <a class="dropdown-item" th:text="${sottocategoria.marca}">Sottocategoria</a>
-                            </li>
-                        </ul>
-                        -->
                     </li>
                 </ul>
             </div>
@@ -83,7 +71,7 @@
         <ul class="navbar-nav">
             <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
             <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
-            <li class="navbar-item"><a class="nav-link" th:href="@{/inArrivo}">In Arrivo</a></li>
+            <li class="navbar-item"><a class="nav-link" th:href="@{/offerteinarrivo}">In Arrivo</a></li>
             <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
             <li class="navbar-item"><a class="nav-link" th:href="@{/loginadmin}">Login</a></li>
         </ul>
@@ -94,7 +82,7 @@
     <div class="container" id="containercard">
         <div class="row">
 
-            <div class="col-md-3 mb-3" th:each="prodotto, iterStat : ${prodotti}" th:if="${prodotto.sottocategoria.statoOfferta == true}">
+            <div class="col-md-3 mb-3" th:each="prodotto : ${prodotti}" th:if="${prodotto.sottocategoria.statoOfferta == true}">
                 <div class="card text-dark bg-light mb-3 h-100" style="max-width: 18rem;">
                     <div class="card-header grassetto" th:text="${prodotto.sottocategoria.marca} + ' - ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'">Marca e Sconto</div>
                     <img class="card-img-top"
@@ -124,10 +112,10 @@
             <div class="col-xs-12 col-xl-6 order-2 order-xl-1">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link link-secondary px-2 px-md-3" href="#!">Numero Assistenza: 0818993839</a>
+                        <a class="nav-link link-secondary px-2 px-md-3" href="#">Numero Assistenza: 0818993839</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-secondary px-2 px-md-3" href="#!">Partita IVA: P.IVA123456789</a>
+                        <a class="nav-link link-secondary px-2 px-md-3" href="#">Partita IVA: P.IVA123456789</a>
                     </li>
                 </ul>
             </div>

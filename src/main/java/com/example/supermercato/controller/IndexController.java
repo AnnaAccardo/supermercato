@@ -36,4 +36,8 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/chisiamo")
+    public String chiSiamo(){
+        return "chisiamo";
+    }
 }
