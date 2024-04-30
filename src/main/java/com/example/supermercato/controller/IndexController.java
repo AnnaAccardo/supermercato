@@ -23,53 +23,17 @@ public class IndexController {
     private CategoriaService categoriaService;
 
     @Autowired
-    private SottocategoriaService sottocategoriaService;
-
-    @Autowired
     private ProdottoService prodottoService;
 
     @GetMapping
     public String getPage(
-            Model model,
-            @RequestParam(name = "errorericerca", required = false) String erroreRicerca
+            Model model
     ){
         List<Prodotto> prodotti = prodottoService.getProdotti();
         List<Categoria> categorie = categoriaService.getCategorie();
         model.addAttribute("categorie", categorie);
         model.addAttribute("prodotti", prodotti);
-        model.addAttribute("errorericerca", erroreRicerca);
         return "index";
     }
 
-    @GetMapping("/offerte")
-    public String offerte(
-            @RequestParam(name = "id", required = false) String idCategoria,
-            Model model
-    ){
-        List<Categoria> categorie = categoriaService.getCategorie();
-        model.addAttribute("categorie", categorie);
-
-        if(idCategoria != null){
-            Categoria categoria = categoriaService.getCategoriaById(Integer.parseInt(idCategoria));
-            model.addAttribute("categoria", categoria);
-            List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorieByCategoriaId(Integer.parseInt(idCategoria));
-            model.addAttribute("sottocategorie", sottocategorie);
-        }
-
-        List<Prodotto> prodotti = idCategoria == null ? prodottoService.getProdotti() : prodottoService.getProdottiByCategoriaId(Integer.parseInt(idCategoria));
-        model.addAttribute("prodotti", prodotti);
-        return "offerte";
-    }
-
-    @GetMapping("/ricerca")
-    public String ricerca(@RequestParam("nome") String nome, Model model) {
-        Categoria categoria = categoriaService.getCategoriaByNome(nome);
-        int idCategoria = 0;
-
-        if(categoria != null){
-            idCategoria = categoria.getId();
-            return "redirect:/offerte?id=" + idCategoria;
-        }
-           return "redirect:/?errorericerca";
-    }
 }

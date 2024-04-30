@@ -47,21 +47,14 @@
 
 <body>
     <nav class="navbar navbar-expand-lg container-fluid">
-        <!--
-            navbar: classe per i menù di navigazione
-            navbar-expand-lg: definisco il breakpoint ove voglio che il menù collassi in un button/dropdown
-            Non uso fixed-top: menù fissato in alto allo scorrimento della pagina
-        -->
         <a class="navbar-brand" th:href="@{/}"><img
                 src="img/jaitasupermercati.png"
                 alt="Supermercato JAITA 111" /></a>
-        <!-- navbar-brand individua il titolo o il logo del sito -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
             <span class="navbar-toggler-icon"></span>
-            <!-- pulsantino con le tre lineette in orizzontale -->
         </button>
         <div class="collapse navbar-collapse" id="mia_nav">
-            <form class="d-flex ms-auto">
+            <form action="/offerte/ricerca" method="get" class="d-flex ms-auto">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -80,18 +73,19 @@
                         </li>
                     </ul>
                 </div>
-                <input class="form-control me-2" type="search" placeholder="Cerca prodotto" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Cerca prodotto" aria-label="Search" name="prodottocercato">
                 <button id="searchButton" class="btn btn-outline-success" type="submit">Cerca</button>
             </form>
+
         </div>
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav1">
 
             <ul class="navbar-nav">
-                <li class="navbar-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="navbar-item"><a class="nav-link" href="offerte.html">Offerte</a></li>
-                <li class="navbar-item"><a class="nav-link" href="inArrivo.html">In Arrivo</a></li>
-                <li class="navbar-item"><a class="nav-link" href="adminprodotti.html">Area Amministrativa</a></li>
-                <li class="navbar-item"><a class="nav-link" href="loginadmin.html">Login</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/inArrivo}">In Arrivo</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/loginadmin}">Login</a></li>
             </ul>
         </div>
     </nav>
@@ -125,7 +119,6 @@
         <div class="container overflow-hidden">
             <div class="row gy-3 gy-md-5 gy-xl-0 align-items-sm-center">
                 <div class="col-xs-12 col-sm-6 col-xl-3 order-0 order-xl-0">
-
                 </div>
 
                 <div class="col-xs-12 col-xl-6 order-2 order-xl-1">
@@ -140,10 +133,6 @@
                 </div>
             </div>
         </div>
-        </div>
-
-
-
     </footer>
 
 </body>

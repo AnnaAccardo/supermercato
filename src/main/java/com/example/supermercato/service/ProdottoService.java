@@ -9,6 +9,7 @@ public interface ProdottoService {
 
     List<Prodotto> getProdotti();
     List<Prodotto> getProdottiBySottocategoriaId(int idSottocategoria);
+    List<Prodotto> getProdottiByNome(String nome);
     List<Prodotto> getProdottiByCategoriaId(int idCategoria);
     Prodotto getProdottoById(int id);
     void registraProdotto(Prodotto prodotto, String nome, String prezzo, String descrizione, int idSottoCategoria, MultipartFile immagine);
