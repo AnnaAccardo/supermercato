@@ -11,7 +11,7 @@
     <link href="style.css" rel="stylesheet" />
     <style>
         .container {
-            margin-top: 550px; /* Aggiunta del margine superiore */
+            margin-top: 750px; /* Aggiunta del margine superiore */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -82,6 +82,24 @@
     height: auto;
     margin: 20px auto;
 }
+
+        .tabella {
+        margin-right: auto;
+        margin-left: auto;
+        }
+
+        #formUno {
+        text-align: center;
+        }
+
+        .pulsante {
+        width: 300px;
+    background-color: green;
+    font-family: Arial;
+    font-size: 20px;
+    margin: 0 auto;
+    display: block;
+        }
     </style>
 </head>
 
@@ -101,8 +119,7 @@
             <!-- navbar-collapse: si collega al contesto della navbar -->
             <!-- justify-content-end: posiziona il contenuto del div a destra -->
             <ul class="navbar-nav"> <!-- adatto un elenco HTML alla classe di Bootstrap opportuna per la navbar-->
-                <li class="navbar-item"><a class="nav-link" href="index.html">Home</a></li>
-
+                <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerteinarrivo}">In Arrivo</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
@@ -116,8 +133,8 @@
     <div class="offerte-container">
         <div class="square account-info">
             <h3>Informazioni Account</h3>
-            <p>Benvenuto</p>
-            <p th:text="${admin.nome} + ' ' + ${admin.cognome}"></p>
+            <p th:style="'text-align:center;'">Benvenuto/a</p>
+            <p th:text="${admin.nome} + ' ' + ${admin.cognome}" th:style="'text-align:center;'"></p>
             <!-- Aggiungi altre informazioni dell'account qui -->
         </div>
 
@@ -125,7 +142,7 @@
             <h2 th:style="'text-align:center;'">PRODOTTI</h2>
             <div class="row">
                 <div class="col">
-                    <table>
+                    <table class="tabella">
                         <tr th:each="prodotto : ${prodotti}">
                             <td></td>
                             <td th:text="${prodotto.nome}"></td>
@@ -133,13 +150,13 @@
                             <td th:text="${prodotto.descrizione}"></td>
                             <td th:text="${prodotto.sottocategoria.marca}"></td>
                             <td>
-                                <a th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
-                                <a th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
+                                <a class="btn btn-info" th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
+                                <a class="btn btn-danger" th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
                             </td>
                         </tr>
                     </table>
                     <hr>
-                    <form action="/adminprodotti" method="post" enctype="multipart/form-data">
+                    <form action="/adminprodotti" method="post" enctype="multipart/form-data" id="formUno">
                         <input type="text" name="nome" th:value="${prodotto.nome}" placeholder="Scrivi il nome del prodotto" required class="campi">
                         <br>
                         <input type="number" step="any" name="prezzo" th:value="${prodotto.prezzo}" placeholder="Scrivi il prezzo" required class="campi">
@@ -167,7 +184,7 @@
             <h3>GESTIONE OFFERTE</h3>
             <div class="row">
                 <div class="col">
-                    <table>
+                    <table class="tabella">
                         <tr>
                             <td>Marca</td>
                             <td>Categoria</td>
@@ -180,7 +197,7 @@
                             <td th:text="${sottocategoria.statoOfferta == true ? 'Attiva' : 'Non Attiva'}"></td>
                             <td th:text="${sottocategoria.statoOfferta == false ? '--' : sottocategoria.valoreOfferta.valore + '%'}"></td>
                             <td>
-                                <a th:href="@{/adminprodotti/disattivaofferta(idSott=${sottocategoria.id})}">Disattiva Offerta</a>
+                                <a class="btn btn-warning" th:href="@{/adminprodotti/disattivaofferta(idSott=${sottocategoria.id})}">Disattiva Offerta</a>
                             </td>
                         </tr>
                     </table>
@@ -192,22 +209,28 @@
             <h3>OFFERTE IN ARRIVO</h3>
             <div class="row">
                 <div class="col">
-                    <table th:if="${offerte != null}">
+                    <table th:if="${offerte != null}" class="tabella">
                         <tr>
                             <td>Marca</td>
+                            <td>&nbsp;</td>
                             <td>Offerta</td>
+                            <td>&nbsp;</td>
                             <td>Data Inizio</td>
+                            <td>&nbsp;</td>
                             <td>Data Fine</td>
                         </tr>
                         <tr th:each="offerta : ${offerte}">
                             <td th:text="${offerta.sottocategoria.marca}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${offerta.valoreOfferta.valore} + '%'"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${offerta.dataInizio}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${offerta.dataFine}"></td>
                             <td>
-                                <a th:href="@{/adminprodotti(idOff=${offerta.id})}">Modifica</a>
-                                <a th:href="@{/adminprodotti/eliminaOff(idOff=${offerta.id})}">Elimina</a>
-                                <a th:href="@{/adminprodotti/attivaofferta(idOff=${offerta.id}, idSott=${offerta.sottocategoria.id}, idVal=${offerta.valoreOfferta.id})}">Rendi Attiva</a>
+                                <a class="btn btn-info" th:href="@{/adminprodotti(idOff=${offerta.id})}">Modifica</a>
+                                <a class="btn btn-danger" th:href="@{/adminprodotti/eliminaOff(idOff=${offerta.id})}">Elimina</a>
+                                <a class="btn btn-success" th:href="@{/adminprodotti/attivaofferta(idOff=${offerta.id}, idSott=${offerta.sottocategoria.id}, idVal=${offerta.valoreOfferta.id})}">Rendi Attiva</a>
                             </td>
                         </tr>
                     </table>
@@ -228,7 +251,7 @@
                         </select>
                         <input type="date" name="datainizio" class="campi" th:value="${offertainarrivo.dataInizio}" required min="yyyy-mm-dd">
                         <input type="date" name="datafine" class="campi" th:value="${offertainarrivo.dataFine}" required onchange="controlloData()">
-                        <input type="submit" value="Registra">
+                        <input type="submit" value="Registra" class="pulsante">
                     </form>
                 </div>
             </div>
