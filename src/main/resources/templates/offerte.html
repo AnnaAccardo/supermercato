@@ -87,11 +87,12 @@
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav1">
 
             <ul class="navbar-nav">
-                <li class="navbar-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="navbar-item"><a class="nav-link" href="offerte.html">Offerte</a></li>
-                <li class="navbar-item"><a class="nav-link" href="inArrivo.html">In Arrivo</a></li>
-                <li class="navbar-item"><a class="nav-link" href="adminprodotti.html">Area Amministrativa</a></li>
-                <li class="navbar-item"><a class="nav-link" href="loginadmin.html">Login</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                <!-- Non è una pagina HTML! -->
+                <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/offerteinarrivo}">In Arrivo</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/loginadmin}">Login</a></li>
             </ul>
         </div>
     </nav>

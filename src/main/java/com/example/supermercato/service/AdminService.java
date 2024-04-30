@@ -15,6 +15,4 @@ public interface AdminService {
     boolean loginAdmin(String username, String password, HttpSession session);
 
     void registraAdmin(Admin admin);
-
-    boolean controlloUsername(String username);
 }
