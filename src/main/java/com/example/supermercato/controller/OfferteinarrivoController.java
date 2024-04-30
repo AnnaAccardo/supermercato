@@ -1,13 +1,7 @@
 package com.example.supermercato.controller;
 
-import com.example.supermercato.model.OfferteInArrivo;
-import com.example.supermercato.model.Prodotto;
-import com.example.supermercato.model.Sottocategoria;
-import com.example.supermercato.model.ValoreOfferta;
-import com.example.supermercato.service.OfferteInArrivoService;
-import com.example.supermercato.service.ProdottoService;
-import com.example.supermercato.service.SottocategoriaService;
-import com.example.supermercato.service.ValoreOffertaService;
+import com.example.supermercato.model.*;
+import com.example.supermercato.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +27,9 @@ public class OfferteinarrivoController {
     @Autowired
     private ValoreOffertaService valoreOffertaService;
 
+    @Autowired
+    private CategoriaService categoriaService;
+
     @GetMapping
     public String getPage(Model model, HttpSession session){
 
@@ -40,10 +37,12 @@ public class OfferteinarrivoController {
         List<OfferteInArrivo> offerte = offerteInArrivoService.getOfferteInArrivo();
         List<Sottocategoria> sottocategoria = sottocategoriaService.getSottocategorie();
         List<ValoreOfferta> valoreOfferta = valoreOffertaService.getValoreOfferta();
+        List<Categoria> categoria = categoriaService.getCategorie();
         model.addAttribute("prodotto", prodotto);
         model.addAttribute("offerte", offerte);
         model.addAttribute("sottocategoria", sottocategoria);
         model.addAttribute("valoreofferta", valoreOfferta);
+        model.addAttribute("categoria", categoria);
 
         return "offerteinarrivo";
     }

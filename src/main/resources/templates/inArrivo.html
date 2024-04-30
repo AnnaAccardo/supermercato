@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -83,7 +83,7 @@
             <!-- Prima colonna -->
             <div class="col-md-4">
                 <div class="carousel">
-                    <h4 style="text-align: center;">Marca del Prodotto</h4>
+                    <h4 style="text-align: center;" th:each="categoria : {categoria}" th:text="">Marca del Prodotto</h4>
                     <div id="carousel0" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
