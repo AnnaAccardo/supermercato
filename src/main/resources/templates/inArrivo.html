@@ -57,7 +57,7 @@
         </button>
         <div class="collapse navbar-collapse" id="mia_nav">
         </div>
-        <div class="collapse navbar-collapse justify-content-end" id="mia_nav1">
+        <div class="collapse navbar-collapse justify-content-end" id="mia_nav">
             <!-- collapse: si collega col data-bs-toggle del button -->
             <!-- navbar-collapse: si collega al contesto della navbar -->
             <!-- justify-content-end: posiziona il contenuto del div a destra -->
@@ -66,14 +66,17 @@
                 <!-- Non è una pagina HTML! -->
                 <li class="navbar-item"><a class="nav-link" href="offerte.html">Offerte</a></li>
                 <li class="navbar-item"><a class="nav-link" href="inArrivo.html">In Arrivo</a></li>
-                <li class="navbar-item"><a class="nav-link" href="areaAmministrativa.html">Area Amministrativa</a></li>
-                <li class="navbar-item"><a class="nav-link" href="login.html">Login</a></li>
+                <li class="navbar-item"><a class="nav-link" href="adminprodotti.html">Area Amministrativa</a></li>
+                <li class="navbar-item"><a class="nav-link" href="loginadmin.html">Login</a></li>
             </ul>
         </div>
     </nav>
-    <div class="row" style="object-fit: cover;">
-        <img src="src/main/resources/static/img/Bannerinarrivo.png" class="img-fluid">
-    </div>
+    <br />
+    <h1 style="text-align: center;"> BANNER PUBBLICITARIO NEL MEZZO</h1>
+    <br />
+    <br />
+    <h1 style="text-align: center;"> Marche prossimamente in offerta!</h1>
+    <br />
 
     <article class="container-fluid">
         <div class="row">
@@ -84,25 +87,37 @@
                     <div id="carousel0" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLYKa7bFW1s3warDOki5w5YlwLf5uSM1Nr4_WuIzf-Tw&s"
-                                    class="d-block mx-auto" alt="...">
+                                <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
+                                    <a href="offerte.html">
+                                        <img src="Products/CocaCola1.jpg"
+                                             class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
+                                    </a>
+                                </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="https://cdn4.iconfinder.com/data/icons/food-icons/apple.png"
-                                    class="d-block mx-auto" alt="...">
+                                <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
+                                    <a href="offerte.html">
+                                        <img src="Products/Barilla1.jpg"
+                                             class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
+                                    </a>
+                                </div>
                             </div>
                             <div class="carousel-item">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRysei1C5FD-uiwRVQAMipC7I_rE65n-h7MojUdlzJK2w&s"
-                                    class="d-block mx-auto" alt="...">
+                                <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
+                                    <a href="offerte.html">
+                                        <img src="Products/RioMare1.jpg"
+                                             class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel0"
-                            data-bs-slide="prev">
+                                data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carousel0"
-                            data-bs-slide="next">
+                                data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -113,29 +128,30 @@
             <!-- Seconda colonna -->
             <div class="col-md-4">
                 <div class="carousel">
-                    <h4 style="text-align: center;">Marca del Prodotto</h4>
+                    <h4 style="text-align: center;">Barilla</h4>
                     <div id="carousel1" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLYKa7bFW1s3warDOki5w5YlwLf5uSM1Nr4_WuIzf-Tw&s"
-                                    class="d-block mx-auto" alt="...">
+                                <!-- 1024x 1024 -->
+                                <img src="Products/Barilla1.jpg"
+                                     class="d-block mx-auto" alt="...">
                             </div>
                             <div class="carousel-item">
                                 <img src="https://cdn4.iconfinder.com/data/icons/food-icons/apple.png"
-                                    class="d-block mx-auto" alt="...">
+                                     class="d-block mx-auto" alt="...">
                             </div>
                             <div class="carousel-item">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRysei1C5FD-uiwRVQAMipC7I_rE65n-h7MojUdlzJK2w&s"
-                                    class="d-block mx-auto" alt="...">
+                                     class="d-block mx-auto" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel1"
-                            data-bs-slide="prev">
+                                data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carousel1"
-                            data-bs-slide="next">
+                                data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -146,29 +162,29 @@
             <!-- Terza colonna -->
             <div class="col-md-4">
                 <div class="carousel">
-                    <h4 style="text-align: center;">Marca del Prodotto</h4>
+                    <h4 style="text-align: center;">Rio mare</h4>
                     <div id="carousel2" class="carousel slide">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLYKa7bFW1s3warDOki5w5YlwLf5uSM1Nr4_WuIzf-Tw&s"
-                                    class="d-block mx-auto" alt="...">
+                                <img src="Products/RioMare1.jpg"
+                                     class="d-block mx-auto" alt="...">
                             </div>
                             <div class="carousel-item">
                                 <img src="https://cdn4.iconfinder.com/data/icons/food-icons/apple.png"
-                                    class="d-block mx-auto" alt="...">
+                                     class="d-block mx-auto" alt="...">
                             </div>
                             <div class="carousel-item">
                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRysei1C5FD-uiwRVQAMipC7I_rE65n-h7MojUdlzJK2w&s"
-                                    class="d-block mx-auto" alt="...">
+                                     class="d-block mx-auto" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carousel2"
-                            data-bs-slide="prev">
+                                data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carousel2"
-                            data-bs-slide="next">
+                                data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
