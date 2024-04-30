@@ -11,7 +11,7 @@
     <link href="style.css" rel="stylesheet" />
     <style>
         .container {
-            margin-top: 20px; /* Aggiunta del margine superiore */
+            margin-top: 550px; /* Aggiunta del margine superiore */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -76,6 +76,12 @@
             color: white;
             text-decoration: none;
         }
+
+    .campi {
+    width: 470px;
+    height: auto;
+    margin: 20px auto;
+}
     </style>
 </head>
 
@@ -89,7 +95,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
         <span class="navbar-toggler-icon"></span> <!-- pulsantino con le tre lineette in orizzontale -->
     </button>
-    
+
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav">
             <!-- collapse: si collega col data-bs-toggle del button -->
             <!-- navbar-collapse: si collega al contesto della navbar -->
@@ -100,7 +106,7 @@
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerteinarrivo}">In Arrivo</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
-                <li class="navbar-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+                <li class="navbar-item"><a class="nav-link" th:href="@{/loginadmin}">Login</a></li>
 
         </ul>
     </div>
@@ -108,59 +114,145 @@
 
 <div class="container">
     <div class="offerte-container">
-        <div class="square account-info" style="margin-top:20px" >
+        <div class="square account-info">
             <h3>Informazioni Account</h3>
             <p>Benvenuto</p>
             <p th:text="${admin.nome} + ' ' + ${admin.cognome}"></p>
             <!-- Aggiungi altre informazioni dell'account qui -->
         </div>
-        <div class="square">
-            <h3>GESTIONE OFFERTE</h3>
+
+        <div class="square" id="prodotti">
+            <h2 th:style="'text-align:center;'">PRODOTTI</h2>
             <div class="row">
                 <div class="col">
-                    <p>Marca</p>
-                </div>
-                <div class="col">
-                    <p>Categoria</p>
-                </div>
-                <div class="col">
-                    <p>Stato Offerta</p>
-                </div>
-                <div class="col">
-                    <p>Disattiva Offerta</p>
+                    <table>
+                        <tr th:each="prodotto : ${prodotti}">
+                            <td></td>
+                            <td th:text="${prodotto.nome}"></td>
+                            <td th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')} + ' € '"></td>
+                            <td th:text="${prodotto.descrizione}"></td>
+                            <td th:text="${prodotto.sottocategoria.marca}"></td>
+                            <td>
+                                <a th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
+                                <a th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr>
+                    <form action="/adminprodotti" method="post" enctype="multipart/form-data">
+                        <input type="text" name="nome" th:value="${prodotto.nome}" placeholder="Scrivi il nome del prodotto" required class="campi">
+                        <br>
+                        <input type="number" step="any" name="prezzo" th:value="${prodotto.prezzo}" placeholder="Scrivi il prezzo" required class="campi">
+                        <br>
+                        <input type="text" name="descrizione" th:value="${prodotto.descrizione}" placeholder="Scrivi la descrizione" required class="campi">
+                        <br>
+                        <select name="sottocategorie" class="campi">
+                            <option th:each="sottocategoria : ${sottocategorie}"
+                                    th:text="${sottocategoria.marca}"
+                                    th:value="${sottocategoria.id}"
+                                    th:selected="${prodotto.sottocategoria != null && sottocategoria.id == prodotto.sottocategoria.id}">
+                            </option>
+                        </select>
+                        <br>
+                        <input type="file" name="immagine" class="campi">
+                        <br>
+                        <input type="submit" value="Registra" class="pulsante">
+                    </form>
+                    <br>
                 </div>
             </div>
         </div>
-        <div class="square">
+
+        <div class="square" id="gestione-offerte">
+            <h3>GESTIONE OFFERTE</h3>
+            <div class="row">
+                <div class="col">
+                    <table>
+                        <tr>
+                            <td>Marca</td>
+                            <td>Categoria</td>
+                            <td>Stato Offerta</td>
+                            <td>Offerta</td>
+                        </tr>
+                        <tr th:each="sottocategoria : ${sottocategorie}">
+                            <td th:text="${sottocategoria.marca}"></td>
+                            <td th:text="${sottocategoria.categoria.nome}"></td>
+                            <td th:text="${sottocategoria.statoOfferta == true ? 'Attiva' : 'Non Attiva'}"></td>
+                            <td th:text="${sottocategoria.statoOfferta == false ? '--' : sottocategoria.valoreOfferta.valore + '%'}"></td>
+                            <td>
+                                <a th:href="@{/adminprodotti/disattivaofferta(idSott=${sottocategoria.id})}">Disattiva Offerta</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="square" id="offerte-in-arrivo">
             <h3>OFFERTE IN ARRIVO</h3>
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Marca">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Offerta">
-                </div>
-                <div class="col">
-                    <input type="date" class="form-control">
-                </div>
-                <div class="col">
-                    <input type="date" class="form-control">
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col">
-                    <p>Modifica</p>
-                </div>
-                <div class="col">
-                    <p>Elimina</p>
-                </div>
-                <div class="col">
-                    <p>Rendi Attiva</p>
+                    <table th:if="${offerte != null}">
+                        <tr>
+                            <td>Marca</td>
+                            <td>Offerta</td>
+                            <td>Data Inizio</td>
+                            <td>Data Fine</td>
+                        </tr>
+                        <tr th:each="offerta : ${offerte}">
+                            <td th:text="${offerta.sottocategoria.marca}"></td>
+                            <td th:text="${offerta.valoreOfferta.valore} + '%'"></td>
+                            <td th:text="${offerta.dataInizio}"></td>
+                            <td th:text="${offerta.dataFine}"></td>
+                            <td>
+                                <a th:href="@{/adminprodotti(idOff=${offerta.id})}">Modifica</a>
+                                <a th:href="@{/adminprodotti/eliminaOff(idOff=${offerta.id})}">Elimina</a>
+                                <a th:href="@{/adminprodotti/attivaofferta(idOff=${offerta.id}, idSott=${offerta.sottocategoria.id}, idVal=${offerta.valoreOfferta.id})}">Rendi Attiva</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <form action="/adminprodotti/aggiungiofferta" method="post" enctype="multipart/form-data">
+                        <select name="sottocategorie" class="campi">
+                            <option th:each="sottocategoria : ${sottocategorie}"
+                                    th:text="${sottocategoria.marca}"
+                                    th:value="${sottocategoria.id}"
+                                    th:selected="${offertainarrivo.sottocategoria != null && offertainarrivo.sottocategoria.id == sottocategoria.id}">
+                            </option>
+                        </select>
+                        <select name="valoriofferte" class="campi">
+                            <option th:each="valore : ${valoreofferta}"
+                                    th:text="${valore.valore + '%'}"
+                                    th:value="${valore.id}"
+                                    th:selected="${offertainarrivo.valoreOfferta != null && offertainarrivo.valoreOfferta.id == valore.id}">
+                            </option>
+                        </select>
+                        <input type="date" name="datainizio" class="campi" th:value="${offertainarrivo.dataInizio}" required min="yyyy-mm-dd">
+                        <input type="date" name="datafine" class="campi" th:value="${offertainarrivo.dataFine}" required onchange="controlloData()">
+                        <input type="submit" value="Registra">
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    var oggi = new Date();
+    var giorno = oggi.getDate();
+    var mese = oggi.getMonth()+1;
+    var anno = oggi.getFullYear();
+    var giornoStringa = giorno < 10 ? '0' + giorno : giorno;
+    var meseStringa = mese < 10 ? '0' + mese : mese;
+    var dataMinima = anno + '-' + meseStringa + '-' + giornoStringa;
+    document.getElementsByName("datainizio")[0].min = dataMinima;
+    function controlloData() {
+        var dataInizio = document.getElementsByName("datainizio")[0].value;
+        var dataFine = document.getElementsByName("datafine")[0].value;
+        if (dataInizio > dataFine) {
+            alert("La data di fine deve essere successiva alla data di inizio");
+            document.getElementsByName("datafine")[0].value = "";
+        }
+    }
+</script>
 
 </body>
 
