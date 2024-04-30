@@ -1,0 +1,131 @@
+.navbar-brand img {
+    margin-left: 7rem; /* Regola il margine sinistro del logo */
+    width: 160px;
+    height: 160px ;
+}
+
+.navbar-nav {
+    margin-right: 7rem; /* Regola il margine destro dell'elenco dei menu */
+}
+
+.navbar{
+    background-color: #8f0000;
+    padding: 20px;
+    height: 80px;
+}
+
+body {
+    color: white;
+    background-color: #FFFAF4 !important;
+    font-family: "Barlow" !important;
+
+}
+
+.grassetto {
+    font-weight: bold;
+}
+
+.footer {
+    background-color: #8f0000;
+    padding: 20px;
+    height: 80px;
+}
+
+#containercard{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+}
+
+.btn-outline-success {
+    color: white;
+    border-color: white;
+}
+
+.footer .nav-link {
+    color: white !important;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #8f0000;
+    color: white;
+    padding: 20px;
+    height: 80px;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-toggler {
+    border-color: white;
+}
+
+/* Pulsante di ricerca */
+.navbar .btn-outline-success {
+    color: black;
+    border-color: white;
+    background-color: white;
+}
+
+/*HOMEPAGE*/
+/* Testo sottolineato */
+.underlined-text {
+    position: relative;
+    display: inline-block; /* Assicura che l'elemento abbia solo la larghezza del suo contenuto */
+}
+
+.underlined-text::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* Altezza della sottolineatura */
+    left: 0;
+    width: 25%; /* Larghezza uguale alla larghezza del testo */
+    height: 4px; /* Spessore della sottolineatura */
+    background-color: #FFD200; /* Colore della sottolineatura */
+    transition: all 0.3s ease; /* Transizione per un effetto animato */
+}
+
+
+/* testo sottolineato sezione chi siamo */
+.underlined-text2 {
+    position: relative;
+    display: inline-block; /* Assicura che l'elemento abbia solo la larghezza del suo contenuto */
+}
+
+.underlined-text2::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* Altezza della sottolineatura */
+    left: 0;
+    width: 15%; /* Larghezza uguale alla larghezza del testo */
+    height: 4px; /* Spessore della sottolineatura */
+    background-color: #FFD200; /* Colore della sottolineatura */
+    transition: all 0.3s ease; /* Transizione per un effetto animato */
+}
+
+
+.background-cta{
+    background-color: aquamarine;
+}
+
+/* icone */
+
+.custom-img {
+    max-width: 15vh !important; /* Imposta la larghezza massima delle immagini */
+    height: auto; /* Imposta l'altezza automaticamente per mantenere le proporzioni */
+}
+
+
+.dropdown .dropdown-toggle {
+    background-color: white !important;
+    color: black;
+    margin-right: 10px;
+}
+
+
