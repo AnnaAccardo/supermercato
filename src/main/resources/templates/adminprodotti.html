@@ -115,16 +115,12 @@
     <a class="navbar-brand" th:href="@{/}">
         <img src="/img/jaitasupermercati.png" alt="Supermercato XYZ"/>
     </a>
-    <!-- navbar-brand individua il titolo o il logo del sito -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
         <span class="navbar-toggler-icon"></span> <!-- pulsantino con le tre lineette in orizzontale -->
     </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav">
-            <!-- collapse: si collega col data-bs-toggle del button -->
-            <!-- navbar-collapse: si collega al contesto della navbar -->
-            <!-- justify-content-end: posiziona il contenuto del div a destra -->
-            <ul class="navbar-nav"> <!-- adatto un elenco HTML alla classe di Bootstrap opportuna per la navbar-->
+
                 <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerteinarrivo}">In Arrivo</a></li>
