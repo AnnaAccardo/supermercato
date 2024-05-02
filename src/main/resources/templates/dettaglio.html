@@ -75,14 +75,14 @@
                 <img class="card-img-top img-fluid"
                      th:src="@{${prodotto.immagine == null ? '/img/markerImage.png' : prodotto.immagine}}"
                      alt="immagine prodotto" />
-                <h5 th:text="'Sconto del ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'"></h5>
-                <p class="lead" th:text="${prodotto.descrizione}">Descrizione</p>
-                <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 1, 'POINT', 2, 'COMMA')} + ' € '">Prezzo Scontato</span>
+                <h2 th:text="'Sconto del ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'"></h2>
+                <h3 class="lead" th:text="${prodotto.descrizione}">Descrizione</h3>
+                <h1 class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 1, 'POINT', 2, 'COMMA')} + ' € '">Prezzo Scontato</h1>
               <div class="bottoni">
                 <a th:href="@{/offerte}" class="btn btn-danger" style="width: 18%; ">Indietro</a>
                 <br>
                 <br>
-            </div>
+                </div>
             </div>
           </div>
         </div>
