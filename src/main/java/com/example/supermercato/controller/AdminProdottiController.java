@@ -53,7 +53,7 @@ public class AdminProdottiController {
         List<Prodotto> prodotti = prodottoService.getProdottiBySottocategoriaAlfabetico();
         model.addAttribute("prodotti", prodotti);
 
-        List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorie();
+        List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorieAlfabetico();
         model.addAttribute("sottocategorie", sottocategorie);
 
         List<OfferteInArrivo> offerte = offerteInArrivoService.getOfferteInArrivo();

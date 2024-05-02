@@ -23,6 +23,11 @@ public class SottocategoriaServiceImpl implements SottocategoriaService{
     }
 
     @Override
+    public List<Sottocategoria> getSottocategorieAlfabetico() {
+        return (List<Sottocategoria>) sottocategoriaDao.findAllByOrderByMarcaAsc();
+    }
+
+    @Override
     public List<Sottocategoria> getSottocategorieByCategoriaId(int idCategoria) {
         return (List<Sottocategoria>) sottocategoriaDao.findByCategoriaId(idCategoria);
     }
