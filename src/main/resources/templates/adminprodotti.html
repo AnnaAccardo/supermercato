@@ -11,7 +11,10 @@
     <link href="style.css" rel="stylesheet" />
     <style>
         .container {
-            margin-top: 750px; /* Aggiunta del margine superiore */
+            position: absolute;
+            top: 900px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -148,11 +151,18 @@
                 <div class="col">
                     <table class="tabella">
                         <tr th:each="prodotto : ${prodotti}">
-                            <td></td>
+                            <td>
+                                <img th:src="@{${prodotto.immagine == null ? 'markerImage.png' : prodotto.immagine}}" style="max-height:50px">
+                            </td>
+                            <td>&nbsp;</td>
                             <td th:text="${prodotto.nome}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')} + ' € '"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${prodotto.descrizione}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${prodotto.sottocategoria.marca}"></td>
+                            <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-info" th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
                                 <a class="btn btn-danger" th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
@@ -191,15 +201,23 @@
                     <table class="tabella">
                         <tr>
                             <td>Marca</td>
+                            <td>&nbsp;</td>
                             <td>Categoria</td>
+                            <td>&nbsp;</td>
                             <td>Stato Offerta</td>
+                            <td>&nbsp;</td>
                             <td>Offerta</td>
+                            <td>&nbsp;</td>
                         </tr>
                         <tr th:each="sottocategoria : ${sottocategorie}">
                             <td th:text="${sottocategoria.marca}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${sottocategoria.categoria.nome}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${sottocategoria.statoOfferta == true ? 'Attiva' : 'Non Attiva'}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${sottocategoria.statoOfferta == false ? '--' : sottocategoria.valoreOfferta.valore + '%'}"></td>
+                            <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-warning" th:href="@{/adminprodotti/disattivaofferta(idSott=${sottocategoria.id})}">Disattiva Offerta</a>
                             </td>
@@ -231,6 +249,7 @@
                             <td th:text="${offerta.dataInizio}"></td>
                             <td>&nbsp;</td>
                             <td th:text="${offerta.dataFine}"></td>
+                            <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-info" th:href="@{/adminprodotti(idOff=${offerta.id})}">Modifica</a>
                                 <a class="btn btn-danger" th:href="@{/adminprodotti/eliminaOff(idOff=${offerta.id})}">Elimina</a>
