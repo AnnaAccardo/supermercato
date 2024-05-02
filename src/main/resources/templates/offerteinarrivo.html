@@ -93,18 +93,18 @@
                 <p style="text-align: center;">Offerte disponibili dal giorno <span th:text="${#temporals.format(offerta.dataInizio, 'dd/MM/yyyy')}"></span> a <span th:text="${#temporals.format(offerta.dataFine, 'dd/MM/yyyy')}"></span></p>
                 <div th:id="'carousel' + ${offerta.id}" class="carousel slide bg-white">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                        <div class="carousel-item active" th:if="${prodotti.size() > 0}">
                             <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
-                                <img th:src="@{'/carosello/' + ${offerta.sottocategoria.marca} + '.png'}" class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
+                                <img th:src="${prodotti[0].immagine == null ? 'img/markerImage.png' : prodotti[0].immagine}" class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
                             </div>
                         </div>
-                        <div class="carousel-item" th:each="prodotto : ${prodotti}" th:if="${prodotto.sottocategoria.id == offerta.sottocategoria.id}">
+                        <div class="carousel-item" th:each="prodotto, iterStat : ${prodotti}" th:if="${prodotto.sottocategoria.id == offerta.sottocategoria.id and iterStat.index > 0}">
                             <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
-                                <img th:src="${prodotto.immagine == null ? 'img/markerImage.png' : prodotto.immagine}" class="d-block mx-auto img-fluid"
-                                         style="object-fit: cover; height: 100%;" alt="...">
+                                <img th:src="${prodotto.immagine == null ? 'img/markerImage.png' : prodotto.immagine}" class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
                             </div>
                         </div>
                     </div>
+
                     <button class="carousel-control-prev" type="button" th:data-bs-target="'#carousel' + ${offerta.id}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -113,6 +113,7 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
+
                 </div>
             </div>
         </div>
