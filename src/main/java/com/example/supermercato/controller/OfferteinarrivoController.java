@@ -38,6 +38,7 @@ public class OfferteinarrivoController {
         List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorie();
         List<ValoreOfferta> valoreOfferta = valoreOffertaService.getValoreOfferta();
         List<Categoria> categorie = categoriaService.getCategorie();
+
         model.addAttribute("prodotti", prodotti);
         model.addAttribute("offerte", offerte);
         model.addAttribute("sottocategorie", sottocategorie);
