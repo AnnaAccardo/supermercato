@@ -24,13 +24,9 @@
         }
     </script>
     <style>
-        /* Stili per i bottoni "Dettaglio" */
         .btn-danger {
             margin-right: 10px;
-            /* Sposta i bottoni verso destra di 10px */
             background-color: #8f0000;
-            /* Imposta il colore di sfondo */
-            /* Aggiungi altri stili CSS secondo necessitÃ  */
             color: white;
         }
 
@@ -39,14 +35,7 @@
             font-weight: bold;
         }
 
-        .navbar{
-         background: linear-gradient(to right, #8f0000, #cc0000, #e60000, #FC5630);
-         }
 
-         .footer {
-           background: linear-gradient(to right, #FC5630, #e60000, #cc0000, #8f0000);
-        }
-        
         body, h1, h2, h3, h4, h5, h6, p, a, button {
             font-family: 'Barlow', sans-serif;
         }
@@ -54,13 +43,12 @@
          .navbar{
          background: linear-gradient(to right, #8f0000, #cc0000, #e60000, #FC5630);
          }
+
         .footer {
            background: linear-gradient(to right, #FC5630, #e60000, #cc0000, #8f0000);
         }
 
-        .mt-5 {
-        display: block;
-        }
+
     </style>
 </head>
 
@@ -100,8 +88,8 @@
     </div>
 </nav>
 <article>
-    <h3 th:style="${'text-align: center;'}" th:if="${prodotti.isEmpty()}" class="mt-2">Nessun prodotto in offerta!</h3>
-    <div class="container" id="containercard">
+    <h3 th:style="${'text-align: center;'}" th:if="${prodotti.isEmpty()}" class="mt-5">Nessun prodotto in offerta!</h3>
+    <div class="container " id="containercard" th:style="'min-height: 100vh;'">
         <div class="row">
             <div class="col-md-3 mb-3" th:each="prodotto : ${prodotti}">
 
