@@ -100,6 +100,7 @@
     margin: 0 auto;
     display: block;
         }
+
     </style>
 </head>
 
@@ -135,6 +136,7 @@
             <h3>Informazioni Account</h3>
             <p th:style="'text-align:center;'">Benvenuto/a</p>
             <p th:text="${admin.nome} + ' ' + ${admin.cognome}" th:style="'text-align:center;'"></p>
+            <p th:style="'text-align:center;'"><a class="btn btn-danger" th:href="@{/adminprodotti/logout}">Logout</a></p>
             <!-- Aggiungi altre informazioni dell'account qui -->
         </div>
 

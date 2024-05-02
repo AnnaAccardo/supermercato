@@ -127,4 +127,11 @@ public class AdminProdottiController {
         sottocategoriaService.disattivaOfferta(idSott);
         return "redirect:/adminprodotti";
     }
+
+    @GetMapping("/logout")
+    public String logoutPage(HttpSession session) {
+
+        session.removeAttribute("admin");
+        return "redirect:/";
+    }
 }
