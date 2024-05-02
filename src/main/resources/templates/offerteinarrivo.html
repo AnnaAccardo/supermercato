@@ -79,19 +79,19 @@
     </div>
 </nav>
 <div class="row" style="object-fit: cover;">
-    <a href="offerte.html"><img th:src="@{/img/Bannerinarrivo.png}" class="img-fluid"></a>
+    <a th:href="@{/offerte}"><img th:src="@{/img/Bannerinarrivo.png}" class="img-fluid" th:style="'min-width: 100%;'"></a>
 </div>
 <br />
 
 <h3 class="mt-5" th:if="${offerte.isEmpty()}" th:style="'text-align:center;'">Non ci sono offerte in arrivo!</h3>
 
-<article class="container-fluid">
+<article class="container-fluid" th:style="'min-height: 100vh;'">
     <div class="row">
         <div class="col-md-4" th:each="offerta : ${offerte}">
             <div class="carousel">
                 <h4 style="text-align: center;" th:text="${offerta.sottocategoria.marca}">Marca del Prodotto</h4>
                 <p style="text-align: center;">Offerte disponibili dal giorno: <span th:text="${offerta.dataInizio}"></span> a <span th:text="${offerta.dataFine}"></span></p>
-                <div id="carousel0" class="carousel slide">
+                <div id="carousel0" class="carousel slide bg-white">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
@@ -118,8 +118,7 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-            </div>
-        </div>
+
     </div>
 
         <br />

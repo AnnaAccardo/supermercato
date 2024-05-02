@@ -47,7 +47,6 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
             <span class="navbar-toggler-icon"></span>
         </button>
-        </div>
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav">
 
             <ul class="navbar-nav">
@@ -62,7 +61,7 @@
 
 
     <div class="row" style="object-fit: cover;">
-        <a th:href="@{/offerte}"><img th:src="@{/img/banner.png}" class="img-fluid"></a>
+        <a th:href="@{/offerte}"><img th:src="@{/img/banner.png}" class="img-fluid"  th:style="'min-width: 100%;'"></a>
     </div>
 
     <div class="container">
