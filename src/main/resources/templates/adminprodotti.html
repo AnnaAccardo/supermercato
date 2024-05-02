@@ -163,7 +163,7 @@
                             <td>&nbsp;</td>
                             <td th:text="${prodotto.nome}"></td>
                             <td>&nbsp;</td>
-                            <td th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')} + ' € '"></td>
+                            <td th:text="${#numbers.formatDecimal(prodotto.prezzo, 1, 'POINT', 2, 'COMMA')} + ' € '"></td>
                             <td>&nbsp;</td>
                             <td th:text="${prodotto.descrizione}"></td>
                             <td>&nbsp;</td>
