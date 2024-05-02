@@ -94,15 +94,14 @@
                 <div th:id="'carousel' + ${offerta.id}" class="carousel slide bg-white">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;" th:each="prodotto, iterStat : ${prodotti}" th:if="${prodotto.sottocategoria.id == offerta.sottocategoria.id} and ${iterStat.index < 1}">
-                                <img th:src="${prodotto.immagine == null ? 'img/markerImage.png' : prodotto.immagine}" class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
+                            <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
+                                <img th:src="@{'/carosello/' + ${offerta.sottocategoria.marca} + '.png'}" class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
                             </div>
                         </div>
                         <div class="carousel-item" th:each="prodotto : ${prodotti}" th:if="${prodotto.sottocategoria.id == offerta.sottocategoria.id}">
                             <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
                                 <img th:src="${prodotto.immagine == null ? 'img/markerImage.png' : prodotto.immagine}" class="d-block mx-auto img-fluid"
                                          style="object-fit: cover; height: 100%;" alt="...">
-
                             </div>
                         </div>
                     </div>
