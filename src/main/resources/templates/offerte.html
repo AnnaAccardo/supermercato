@@ -92,14 +92,12 @@
     <div class="container " id="containercard" th:style="'min-height: 100vh;'">
         <div class="row">
             <div class="col-md-3 mb-3" th:each="prodotto : ${prodotti}">
-
-                <div class="card text-dark bg-light mb-3 h-100" style="max-width: 18rem;">
+                <div class="card text-dark bg-white mb-3 h-100" style="max-width: 18rem;">
                     <div class="card-header grassetto" th:text="${prodotto.sottocategoria.marca} + ' - ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'">Marca e Sconto</div>
-
                     <div class="container d-flex justify-content-center" style="height: 300px; overflow:hidden;">
-                    <img class="card-img-top img-fluid"
-                         th:src="@{${prodotto.immagine == null ? '/img/markerImage.png' : prodotto.immagine}}"
-                         alt="immagine prodotto" />
+                        <img class="card-img-top img-fluid"
+                             th:src="@{${prodotto.immagine == null ? '/img/markerImage.png' : prodotto.immagine}}"
+                             alt="immagine prodotto" />
                     </div>
                     <div class="card-body">
                         <h5 class="card-title" th:text="${prodotto.nome}">Prodotto</h5>
@@ -107,10 +105,11 @@
                     <div class="card-footer">
                         <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')} + ' €'" th:style="'text-decoration: line-through; font-style: italic;'">Prezzo</span>
                         <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 1, 'POINT', 2, 'COMMA')} + ' €'">Prezzo Scontato</span>
-                         <a th:href="@{/dettaglio(id=${prodotto.id})}" class="btn btn-danger" style="width:40%; " >Dettaglio</a>
+                        <a th:href="@{/dettaglio(id=${prodotto.id})}" class="btn btn-danger" style="width:40%; " >Dettaglio</a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </article>
