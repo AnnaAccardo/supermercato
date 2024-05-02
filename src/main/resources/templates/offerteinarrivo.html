@@ -90,7 +90,7 @@
         <div class="col-md-4" th:each="offerta : ${offerte}">
             <div class="carousel">
                 <h4 style="text-align: center;" th:text="${offerta.sottocategoria.marca}">Marca del Prodotto</h4>
-                <p style="text-align: center;">Offerte disponibili dal giorno: <span th:text="${offerta.dataInizio}"></span> a <span th:text="${offerta.dataFine}"></span></p>
+                <p style="text-align: center;">Offerte disponibili dal giorno <span th:text="${#temporals.format(offerta.dataInizio, 'dd/MM/yyyy')}"></span> a <span th:text="${#temporals.format(offerta.dataFine, 'dd/MM/yyyy')}"></span></p>
                 <div id="carousel0" class="carousel slide bg-white">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
