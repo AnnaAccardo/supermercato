@@ -11,16 +11,16 @@
     <link href="style.css" rel="stylesheet" />
     <style>
         .container {
-            margin-top: 750px; /* Aggiunta del margine superiore */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: auto; /* Aggiunta del margine superiore */
+            display: block;
             height: 80vh;
             /* Modifica l'altezza per occupare la maggior parte della pagina */
         }
 
         .offerte-container {
             width: 80%;
+            margin-right: auto;
+            margin-left: auto;
             /* Larghezza del contenitore delle offerte */
         }
 
@@ -51,7 +51,7 @@
         }
 
         .footer {
-            background-color: #8f0000;
+           background: linear-gradient(to right, #FC5630, #e60000, #cc0000, #8f0000);
             color: white;
             padding: 20px 0;
             /* Aggiungi spazio sopra e sotto */
@@ -104,6 +104,11 @@
         #prodotti{
             margin-top: 3000px;
         }
+
+        .navbar{
+         background: linear-gradient(to right, #8f0000, #cc0000, #e60000, #FC5630);
+         }
+
     </style>
 </head>
 
@@ -134,9 +139,10 @@
 <div class="container">
     <div class="offerte-container">
         <div class="square account-info">
-            <h3>Informazioni Account</h3>
+            <h3>INFORMAZIONI ACCOUNT</h3>
             <p th:style="'text-align:center;'">Benvenuto/a</p>
             <p th:text="${admin.nome} + ' ' + ${admin.cognome}" th:style="'text-align:center;'"></p>
+            <p th:style="'text-align:center;'"><a class="btn btn-danger" th:href="@{/adminprodotti/logout}">Logout</a></p>
             <!-- Aggiungi altre informazioni dell'account qui -->
         </div>
 
@@ -146,11 +152,18 @@
                 <div class="col">
                     <table class="tabella">
                         <tr th:each="prodotto : ${prodotti}">
-                            <td></td>
+                            <td>
+                                <img th:src="@{${prodotto.immagine == null ? 'markerImage.png' : prodotto.immagine}}" style="max-height:50px">
+                            </td>
+                            <td>&nbsp;</td>
                             <td th:text="${prodotto.nome}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')} + ' € '"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${prodotto.descrizione}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${prodotto.sottocategoria.marca}"></td>
+                            <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-info" th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
                                 <a class="btn btn-danger" th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
@@ -189,15 +202,23 @@
                     <table class="tabella">
                         <tr>
                             <td>Marca</td>
+                            <td>&nbsp;</td>
                             <td>Categoria</td>
+                            <td>&nbsp;</td>
                             <td>Stato Offerta</td>
+                            <td>&nbsp;</td>
                             <td>Offerta</td>
+                            <td>&nbsp;</td>
                         </tr>
                         <tr th:each="sottocategoria : ${sottocategorie}">
                             <td th:text="${sottocategoria.marca}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${sottocategoria.categoria.nome}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${sottocategoria.statoOfferta == true ? 'Attiva' : 'Non Attiva'}"></td>
+                            <td>&nbsp;</td>
                             <td th:text="${sottocategoria.statoOfferta == false ? '--' : sottocategoria.valoreOfferta.valore + '%'}"></td>
+                            <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-warning" th:href="@{/adminprodotti/disattivaofferta(idSott=${sottocategoria.id})}">Disattiva Offerta</a>
                             </td>
@@ -229,6 +250,7 @@
                             <td th:text="${offerta.dataInizio}"></td>
                             <td>&nbsp;</td>
                             <td th:text="${offerta.dataFine}"></td>
+                            <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-info" th:href="@{/adminprodotti(idOff=${offerta.id})}">Modifica</a>
                                 <a class="btn btn-danger" th:href="@{/adminprodotti/eliminaOff(idOff=${offerta.id})}">Elimina</a>
