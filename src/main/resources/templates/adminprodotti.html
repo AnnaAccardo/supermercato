@@ -120,14 +120,14 @@
     </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav">
-
+            <ul class="navbar-nav">
                 <li class="navbar-item"><a class="nav-link" th:href="@{/}">Home</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerte}">Offerte</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/offerteinarrivo}">In Arrivo</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/adminprodotti}">Area Amministrativa</a></li>
                 <li class="navbar-item"><a class="nav-link" th:href="@{/loginadmin}">Login</a></li>
 
-        </ul>
+            </ul>
     </div>
 </nav>
 
@@ -161,7 +161,7 @@
                             <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-info" th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
-                                <a class="btn btn-danger" th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
+                                <a class="btn btn-danger eliminaProd" th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
                             </td>
                         </tr>
                     </table>
@@ -248,7 +248,7 @@
                             <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-info" th:href="@{/adminprodotti(idOff=${offerta.id})}">Modifica</a>
-                                <a class="btn btn-danger" th:href="@{/adminprodotti/eliminaOff(idOff=${offerta.id})}">Elimina</a>
+                                <a class="btn btn-danger eliminaOff" th:value="${offerta.sottocategoria.marca} + '@' + ${offerta.id}">Elimina</a>
                                 <a class="btn btn-success" th:href="@{/adminprodotti/attivaofferta(idOff=${offerta.id}, idSott=${offerta.sottocategoria.id}, idVal=${offerta.valoreOfferta.id})}">Rendi Attiva</a>
                             </td>
                         </tr>
@@ -294,6 +294,16 @@
             document.getElementsByName("datafine")[0].value = "";
         }
     }
+
+    document.querySelectorAll('.eliminaOff').forEach( function(button){
+        button.addEventListener("click", function(){
+            let valore = this.getAttribute('value');
+            let datiOfferta = valore.split('@');
+            let conferma = confirm("Sei sicuro di voler cancellare l'offerta in arrivo su " + datiOfferta[0] + "?");
+            if(conferma)
+                window.location.href = "/adminprodotti/eliminaOff?idOff=" + datiOfferta[1];
+        });
+    });
 </script>
 
 </body>
