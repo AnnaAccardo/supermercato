@@ -8,5 +8,5 @@ import java.util.List;
 public interface ProdottoDao extends CrudRepository<Prodotto, Integer> {
     List<Prodotto> findBySottocategoriaId(int idSottocategoria);
     List<Prodotto> findBySottocategoriaCategoriaId(int idCategoria);
-    List<Prodotto> findByNome(String nome);
+    List<Prodotto> findByNomeContainingIgnoreCase(String nome);
 }
