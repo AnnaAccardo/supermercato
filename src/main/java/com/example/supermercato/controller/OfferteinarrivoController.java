@@ -33,12 +33,12 @@ public class OfferteinarrivoController {
     @GetMapping
     public String getPage(Model model, HttpSession session){
 
-        List<Prodotto> prodotto = prodottoService.getProdotti();
+        List<Prodotto> prodotti = prodottoService.getProdotti();
         List<OfferteInArrivo> offerte = offerteInArrivoService.getOfferteInArrivo();
         List<Sottocategoria> sottocategoria = sottocategoriaService.getSottocategorie();
         List<ValoreOfferta> valoreOfferta = valoreOffertaService.getValoreOfferta();
         List<Categoria> categoria = categoriaService.getCategorie();
-        model.addAttribute("prodotto", prodotto);
+        model.addAttribute("prodotti", prodotti);
         model.addAttribute("offerte", offerte);
         model.addAttribute("sottocategoria", sottocategoria);
         model.addAttribute("valoreofferta", valoreOfferta);

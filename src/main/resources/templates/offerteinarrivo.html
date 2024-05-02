@@ -102,9 +102,10 @@
                         </div>
                         <div class="carousel-item" th:each="prodotto : ${prodotti}">
                             <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
-                                <a href="offerte.html">
-                                    <img th:if="${prodotto.immagine != null}" th:src="${prodotto.immagine}" class="d-block mx-auto img-fluid"
-                                         style="object-fit: cover; height: 100%;" alt="...">
+                                <a th:href="@{/offerte}">
+                                    <img class="card-img-top img-fluid"
+                                         th:src="@{${prodotto.immagine == null ? '/img/markerImage.png' : prodotto.immagine}}"
+                                         alt="immagine prodotto" />
                                 </a>
                             </div>
                         </div>
