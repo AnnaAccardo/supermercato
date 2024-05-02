@@ -11,19 +11,16 @@
     <link href="style.css" rel="stylesheet" />
     <style>
         .container {
-            position: absolute;
-            top: 900px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: auto; /* Aggiunta del margine superiore */
+            display: block;
             height: 80vh;
             /* Modifica l'altezza per occupare la maggior parte della pagina */
         }
 
         .offerte-container {
             width: 80%;
+            margin-right: auto;
+            margin-left: auto;
             /* Larghezza del contenitore delle offerte */
         }
 
@@ -54,7 +51,7 @@
         }
 
         .footer {
-            background-color: #8f0000;
+           background: linear-gradient(to right, #FC5630, #e60000, #cc0000, #8f0000);
             color: white;
             padding: 20px 0;
             /* Aggiungi spazio sopra e sotto */
@@ -103,6 +100,9 @@
     margin: 0 auto;
     display: block;
         }
+        .navbar{
+         background: linear-gradient(to right, #8f0000, #cc0000, #e60000, #FC5630);
+         }
 
     </style>
 </head>
@@ -138,7 +138,7 @@
 <div class="container">
     <div class="offerte-container">
         <div class="square account-info">
-            <h3>Informazioni Account</h3>
+            <h3>INFORMAZIONI ACCOUNT</h3>
             <p th:style="'text-align:center;'">Benvenuto/a</p>
             <p th:text="${admin.nome} + ' ' + ${admin.cognome}" th:style="'text-align:center;'"></p>
             <p th:style="'text-align:center;'"><a class="btn btn-danger" th:href="@{/adminprodotti/logout}">Logout</a></p>
