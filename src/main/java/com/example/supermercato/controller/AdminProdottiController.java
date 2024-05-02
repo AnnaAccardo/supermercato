@@ -50,7 +50,7 @@ public class AdminProdottiController {
         Admin admin = (Admin) session.getAttribute("admin");
         model.addAttribute("admin", admin);
 
-        List<Prodotto> prodotti = prodottoService.getProdotti();
+        List<Prodotto> prodotti = prodottoService.getProdottiBySottocategoriaAlfabetico();
         model.addAttribute("prodotti", prodotti);
 
         List<Sottocategoria> sottocategorie = sottocategoriaService.getSottocategorie();

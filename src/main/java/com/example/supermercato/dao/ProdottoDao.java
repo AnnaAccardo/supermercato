@@ -9,4 +9,5 @@ public interface ProdottoDao extends CrudRepository<Prodotto, Integer> {
     List<Prodotto> findBySottocategoriaId(int idSottocategoria);
     List<Prodotto> findBySottocategoriaCategoriaId(int idCategoria);
     List<Prodotto> findByNomeContainingIgnoreCase(String nome);
+    List<Prodotto> findAllByOrderBySottocategoriaMarcaAsc();
 }

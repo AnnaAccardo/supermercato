@@ -171,7 +171,8 @@
                             <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-info" th:href="@{/adminprodotti(id=${prodotto.id})}">Modifica</a>
-                                <a class="btn btn-danger eliminaProd" th:href="@{/adminprodotti/elimina(id=${prodotto.id})}">Elimina</a>
+                                <!--th:href="@{/adminprodotti/elimina(id=${prodotto.id})}"-->
+                                <a class="btn btn-danger eliminaProd" th:value="${prodotto.nome} + '@' + ${prodotto.id}">Elimina</a>
                             </td>
                         </tr>
                     </table>
@@ -305,6 +306,7 @@
         }
     }
 
+    /* check eliminazione offerta in arrivo */
     document.querySelectorAll('.eliminaOff').forEach( function(button){
         button.addEventListener("click", function(){
             let valore = this.getAttribute('value');
@@ -314,6 +316,18 @@
                 window.location.href = "/adminprodotti/eliminaOff?idOff=" + datiOfferta[1];
         });
     });
+
+    /* check eliminazione prodotto */
+     document.querySelectorAll('.eliminaProd').forEach( function(button){
+        button.addEventListener("click", function(){
+            let valore = this.getAttribute('value');
+            let datiProd = valore.split('@');
+            let conferma = confirm("Sei sicuro di voler cancellare il prodotto " + datiProd[0] + "?");
+            if(conferma)
+                window.location.href = "/adminprodotti/elimina?id=" + datiProd[1];
+        });
+    });
+
 </script>
 
 </body>

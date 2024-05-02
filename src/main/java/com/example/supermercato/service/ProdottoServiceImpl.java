@@ -35,6 +35,11 @@ public class ProdottoServiceImpl implements ProdottoService{
     }
 
     @Override
+    public List<Prodotto> getProdottiBySottocategoriaAlfabetico() {
+        return (List<Prodotto>) prodottoDao.findAllByOrderBySottocategoriaMarcaAsc();
+    }
+
+    @Override
     public List<Prodotto> getProdottiByCategoriaId(int idCategoria) {
         return (List<Prodotto>) prodottoDao.findBySottocategoriaCategoriaId(idCategoria);
     }
