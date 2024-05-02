@@ -18,7 +18,7 @@
         }
 
         .offerte-container {
-            width: 80%;
+            width: 100%;
             margin-right: auto;
             margin-left: auto;
             /* Larghezza del contenitore delle offerte */
@@ -104,6 +104,14 @@
          background: linear-gradient(to right, #8f0000, #cc0000, #e60000, #FC5630);
          }
 
+        #formDue {
+        text-align: center;
+        }
+
+        .celle {
+        padding: 20px;
+        }
+
     </style>
 </head>
 
@@ -115,6 +123,7 @@
     <a class="navbar-brand" th:href="@{/}">
         <img src="/img/jaitasupermercati.png" alt="Supermercato XYZ"/>
     </a>
+    <!-- navbar-brand individua il titolo o il logo del sito -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
         <span class="navbar-toggler-icon"></span> <!-- pulsantino con le tre lineette in orizzontale -->
     </button>
@@ -196,23 +205,23 @@
                 <div class="col">
                     <table class="tabella">
                         <tr>
-                            <td>Marca</td>
+                            <td class="celle">Marca</td>
                             <td>&nbsp;</td>
-                            <td>Categoria</td>
+                            <td class="celle">Categoria</td>
                             <td>&nbsp;</td>
-                            <td>Stato Offerta</td>
+                            <td class="celle">Stato Offerta</td>
                             <td>&nbsp;</td>
-                            <td>Offerta</td>
+                            <td class="celle">Offerta</td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr th:each="sottocategoria : ${sottocategorie}">
-                            <td th:text="${sottocategoria.marca}"></td>
+                            <td class="celle" th:text="${sottocategoria.marca}"></td>
                             <td>&nbsp;</td>
-                            <td th:text="${sottocategoria.categoria.nome}"></td>
+                            <td class="celle" th:text="${sottocategoria.categoria.nome}"></td>
                             <td>&nbsp;</td>
-                            <td th:text="${sottocategoria.statoOfferta == true ? 'Attiva' : 'Non Attiva'}"></td>
+                            <td class="celle" th:text="${sottocategoria.statoOfferta == true ? 'Attiva' : 'Non Attiva'}"></td>
                             <td>&nbsp;</td>
-                            <td th:text="${sottocategoria.statoOfferta == false ? '--' : sottocategoria.valoreOfferta.valore + '%'}"></td>
+                            <td class="celle" th:text="${sottocategoria.statoOfferta == false ? '--' : sottocategoria.valoreOfferta.valore + '%'}"></td>
                             <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-warning" th:href="@{/adminprodotti/disattivaofferta(idSott=${sottocategoria.id})}">Disattiva Offerta</a>
@@ -253,7 +262,7 @@
                             </td>
                         </tr>
                     </table>
-                    <form action="/adminprodotti/aggiungiofferta" method="post" enctype="multipart/form-data">
+                    <form action="/adminprodotti/aggiungiofferta" method="post" enctype="multipart/form-data" id="formDue">
                         <select name="sottocategorie" class="campi">
                             <option th:each="sottocategoria : ${sottocategorie}"
                                     th:text="${sottocategoria.marca}"

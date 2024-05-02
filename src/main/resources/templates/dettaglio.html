@@ -72,8 +72,7 @@
           <div class="col-md-6">
             <div class="text-center">
               <h1 th:text="${prodotto.nome}">Nome dell'Articolo</h1>
-              <img th:src="@{${prodotto.immagine == null ? '/img/markerImage.png' : prodotto.immagine}}"
-                   alt="immagine prodotto" class="img-fluid mt-3">
+              <img src="https://bo.nice-cdn.com/upload/image/product/large/default/22849_9f617553.256x256.png" class="img-fluid mt-3" alt="Immagine dell'articolo">
                 <h5 th:text="'Sconto del ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'"></h5>
                 <p class="lead" th:text="${prodotto.descrizione}">Descrizione</p>
                 <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 0, 'POINT', 2, 'COMMA')} + ' euro'">Prezzo Scontato</span>
