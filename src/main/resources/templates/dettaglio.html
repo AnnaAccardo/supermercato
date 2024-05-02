@@ -67,7 +67,7 @@
         </div>
     </nav>
      
-    <div class="container mt-5">
+    <div class="container mt-5" th:style="'min-height: 100vh;'">
         <div class="row justify-content-center">
           <div class="col-md-6">
             <div class="text-center">
@@ -77,7 +77,7 @@
                      alt="immagine prodotto" />
                 <h5 th:text="'Sconto del ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'"></h5>
                 <p class="lead" th:text="${prodotto.descrizione}">Descrizione</p>
-                <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 0, 'POINT', 2, 'COMMA')} + ' € '">Prezzo Scontato</span>
+                <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 1, 'POINT', 2, 'COMMA')} + ' € '">Prezzo Scontato</span>
               <div class="bottoni">
                 <a th:href="@{/offerte}" class="btn btn-danger" style="width: 18%; ">Indietro</a>
                 <br>
