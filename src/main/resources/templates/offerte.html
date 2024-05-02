@@ -63,11 +63,8 @@
     <div class="collapse navbar-collapse" id="mia_nav">
         <form action="/offerte/ricerca" method="get" class="d-flex ms-auto">
             <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" th:text="${categoria == null ? 'Tutte le Offerte' : categoria.nome}"> </button>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" th:text="${categoria == null ? 'Categorie' : categoria.nome}"> </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li>
-                        <a class="dropdown-item" th:href="@{/offerte}">Tutte le Offerte</a>
-                    </li>
                     <li th:each="cat : ${categorie}">
                         <a class="dropdown-item" th:href="@{/offerte(id=${cat.id})}" th:text="${cat.nome}">Categoria</a>
                     </li>
@@ -93,6 +90,11 @@
 
     <div class="container" id="containercard">
         <div class="row">
+
+
+
+
+
 
             <div class="col-md-3 mb-3" th:each="prodotto : ${prodotti}" th:if="${prodotto.sottocategoria.statoOfferta == true}">
 
