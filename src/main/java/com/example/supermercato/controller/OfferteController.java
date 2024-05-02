@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/offerte")
@@ -52,7 +53,7 @@ public class OfferteController {
         }else{
             prodotti = idCategoria == null ? prodottoService.getProdotti() : prodottoService.getProdottiByCategoriaId(Integer.parseInt(idCategoria));
         }
-        model.addAttribute("prodotti", prodotti);
+        model.addAttribute("prodotti", prodotti.stream().filter(p -> p.getSottocategoria().getStatoOfferta()).collect(Collectors.toList()));
         model.addAttribute("categoria", categoria);
 
         return "offerte";

@@ -100,10 +100,10 @@
     </div>
 </nav>
 <article>
-    
+    <h3 th:style="${'text-align: center;'}" th:if="${prodotti.isEmpty()}" class="mt-2">Nessun prodotto in offerta!</h3>
     <div class="container" id="containercard">
         <div class="row">
-            <div class="col-md-3 mb-3" th:each="prodotto : ${prodotti}" th:if="${prodotto.sottocategoria.statoOfferta == true}">
+            <div class="col-md-3 mb-3" th:each="prodotto : ${prodotti}">
 
                 <div class="card text-dark bg-light mb-3 h-100" style="max-width: 18rem;">
                     <div class="card-header grassetto" th:text="${prodotto.sottocategoria.marca} + ' - ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'">Marca e Sconto</div>
