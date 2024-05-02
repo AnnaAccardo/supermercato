@@ -95,7 +95,12 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active" th:if="${prodotti.size() > 0}">
                             <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
-                                <img th:src="${prodotti[0].immagine == null ? 'img/markerImage.png' : prodotti[0].immagine}" class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
+                                <img th:src="${'img/IconaProdotti.png'}" class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
+                            </div>
+                        </div>
+                        <div class="carousel-item" th:if="${prodotti.size() > 0 and offerta.sottocategoria.marca == 'Barilla'}">
+                            <div class="container d-flex justify-content-center" style="height: 300px; overflow: hidden;">
+                                <img th:src="'products/spaghetti2.png'" class="d-block mx-auto img-fluid" style="object-fit: cover; height: 100%;" alt="...">
                             </div>
                         </div>
                         <div class="carousel-item" th:each="prodotto, iterStat : ${prodotti}" th:if="${prodotto.sottocategoria.id == offerta.sottocategoria.id and iterStat.index > 0}">
@@ -104,8 +109,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <button class="carousel-control-prev" type="button" th:data-bs-target="'#carousel' + ${offerta.id}" data-bs-slide="prev">
+
+                <button class="carousel-control-prev" type="button" th:data-bs-target="'#carousel' + ${offerta.id}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
