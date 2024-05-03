@@ -187,7 +187,7 @@
                         <input type="hidden" th:value="${idProdModif == null ? '-1' : idProdModif}" id="idProdMod">
                         <input type="text" name="nome" th:value="${prodotto.nome}" placeholder="Scrivi il nome del prodotto" required class="campi">
                         <br>
-                        <input type="number" step="any" name="prezzo" th:value="${prodotto.prezzo}" placeholder="Scrivi il prezzo" required class="campi">
+                        <input type="number" step="any" name="prezzo" th:value="${prodotto.prezzo}" placeholder="Scrivi il prezzo" required class="campi" min="0.01">
                         <br>
                         <input type="text" name="descrizione" th:value="${prodotto.descrizione}" placeholder="Scrivi la descrizione" required class="campi">
                         <br>
@@ -349,8 +349,8 @@
     let registratoSplit = registrato.value.split('@');
     if(registratoSplit[0] == 's'){
         let rigaProdotto = document.getElementById("rigaProdotto" + registratoSplit[1]);
-        rigaProdotto.classList.add('highlight');
-        setTimeout(function() { rigaProdotto.classList.remove('highlight');}, 1000);
+        setTimeout(function() { rigaProdotto.classList.add('highlight');}, 1000);
+        setTimeout(function() { rigaProdotto.classList.remove('highlight');}, 3000);
     }
 
 </script>

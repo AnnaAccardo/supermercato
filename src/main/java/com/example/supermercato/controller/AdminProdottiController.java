@@ -88,7 +88,7 @@ public class AdminProdottiController {
 
         prodottoService.registraProdotto(prodotto, nome, prezzo, descrizione, idSottocategorie, immagine);
         int idProd = prodotto.getId();
-        return "redirect:/adminprodotti?registrazione=succ&idReg="+idProd;
+        return "redirect:/adminprodotti?registrazione=succ&idReg="+idProd + "#rigaProdotto" + idProd;
     }
 
     @PostMapping("/aggiungiofferta")
