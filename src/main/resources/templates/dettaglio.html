@@ -77,6 +77,7 @@
                      alt="immagine prodotto" />
                 <h2 th:text="'Sconto del ' + ${prodotto.sottocategoria.valoreOfferta.valore} + '%'"></h2>
                 <h3 class="lead" th:text="${prodotto.descrizione}">Descrizione</h3>
+                <span class="prezzi" th:text="${prodotto.prezzo < 1 ? '0' + #numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA') : #numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')} + ' €'" th:style="'text-decoration: line-through; font-style: italic;'">Prezzo</span>
                 <h1 class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 1, 'POINT', 2, 'COMMA')} + ' € '">Prezzo Scontato</h1>
               <div class="bottoni">
                 <a th:href="@{/offerte}" class="btn btn-danger" style="width: 18%; ">Indietro</a>
