@@ -42,6 +42,8 @@ public class AdminProdottiController {
             Model model,
             @RequestParam(name = "id", required = false) Integer id,
             @RequestParam(name = "idOff", required = false) Integer idOff,
+            @RequestParam(name = "registrazione", required = false) String registrazione,
+            @RequestParam(name = "idReg", required = false) Integer idReg,
             HttpSession session
     ){
 
@@ -69,6 +71,8 @@ public class AdminProdottiController {
         model.addAttribute("valoreofferta", valoreOfferta);
 
         model.addAttribute("idProdModif", id);
+        model.addAttribute("registrazione", registrazione);
+        model.addAttribute("idReg", idReg);
 
         return "adminprodotti";
     }
@@ -78,11 +82,13 @@ public class AdminProdottiController {
                           @RequestParam("prezzo") String prezzo,
                           @RequestParam("descrizione") String descrizione,
                           @RequestParam("sottocategorie") int idSottocategorie,
-                          @RequestParam(name = "immagine", required = false) MultipartFile immagine) {
+                          @RequestParam(name = "immagine", required = false) MultipartFile immagine,
+                          Model model
+                          ) {
 
         prodottoService.registraProdotto(prodotto, nome, prezzo, descrizione, idSottocategorie, immagine);
-
-        return "redirect:/adminprodotti";
+        int idProd = prodotto.getId();
+        return "redirect:/adminprodotti?registrazione=succ&idReg="+idProd;
     }
 
     @PostMapping("/aggiungiofferta")

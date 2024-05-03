@@ -80,57 +80,60 @@
             text-decoration: none;
         }
 
-    .campi {
-    width: 470px;
-    height: auto;
-    margin: 20px auto;
-}
+        .campi {
+            width: 470px;
+            height: auto;
+            margin: 20px auto;
+        }
 
         .tabella {
-        margin-right: auto;
-        margin-left: auto;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         #formUno, #formDue {
-        text-align: center;
+            text-align: center;
         }
 
         .pulsante {
-        width: 300px;
-    background-color: green;
-    font-family: Arial;
-    font-size: 20px;
-    margin: 0 auto;
-    display: block;
-    border-radius: 5px;
+            width: 300px;
+            background-color: green;
+            font-family: Arial;
+            font-size: 20px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 5px;
         }
 
         .navbar{
-         background: linear-gradient(to right, #8f0000, #cc0000, #e60000, #FC5630);
-         }
+             background: linear-gradient(to right, #8f0000, #cc0000, #e60000, #FC5630);
+        }
 
 
         .celle {
-        padding: 20px;
+            padding: 20px;
         }
+
         .percentuale-offerta {
-        width: 70px; /* Imposta la larghezza desiderata */
-    }
+            width: 70px; /* Imposta la larghezza desiderata */
+        }
+
+        .highlight {
+        background-color: yellow;
+        transition: background-color 1s ease;
+        }
+
 
     </style>
 </head>
 
 <body>
 <nav class="navbar navbar-expand-lg container-fluid">
-    <!-- navbar: classe per i menù di navigazione -->
-    <!-- navbar-expand-lg: definisco il breakpoint ove voglio che il menù collassi in un button/dropdown -->
-    <!-- Non uso fixed-top: menù fissato in alto allo scorrimento della pagina -->
     <a class="navbar-brand" th:href="@{/}">
         <img src="/img/jaitasupermercati.png" alt="Supermercato XYZ"/>
     </a>
-    <!-- navbar-brand individua il titolo o il logo del sito -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mia_nav">
-        <span class="navbar-toggler-icon"></span> <!-- pulsantino con le tre lineette in orizzontale -->
+        <span class="navbar-toggler-icon"></span>
     </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="mia_nav">
@@ -152,7 +155,6 @@
             <p th:style="'text-align:center;'">Benvenuto/a</p>
             <p th:text="${admin.nome} + ' ' + ${admin.cognome}" th:style="'text-align:center;'"></p>
             <p th:style="'text-align:center;'"><a class="btn btn-danger" th:href="@{/adminprodotti/logout}">Logout</a></p>
-            <!-- Aggiungi altre informazioni dell'account qui -->
         </div>
 
         <div class="square" id="prodotti">
@@ -160,7 +162,7 @@
             <div class="row">
                 <div class="col">
                     <table class="tabella">
-                        <tr th:each="prodotto : ${prodotti}">
+                        <tr th:each="prodotto : ${prodotti}" th:id="'rigaProdotto' + ${prodotto.id}">
                             <td>
                                 <img th:src="@{${prodotto.immagine == null ? 'markerImage.png' : prodotto.immagine}}" style="max-height:50px">
                             </td>
@@ -181,6 +183,7 @@
                     </table>
                     <hr>
                     <form action="/adminprodotti" method="post" enctype="multipart/form-data" id="formUno">
+                        <input type="hidden" th:value="${registrazione == null ? 'n' : 's'} + '@' + ${idReg == null ? -1 : idReg}" id="prodRegistrato">
                         <input type="hidden" th:value="${idProdModif == null ? '-1' : idProdModif}" id="idProdMod">
                         <input type="text" name="nome" th:value="${prodotto.nome}" placeholder="Scrivi il nome del prodotto" required class="campi">
                         <br>
@@ -246,12 +249,12 @@
                         <tr>
                             <td>Marca</td>
                             <td>&nbsp;</td>
-                            <td>&nbsp;</td> <!-- Aggiungi un td vuoto per creare spazio -->
+                            <td>&nbsp;</td>
                             <td>Offerta</td>
                             <td>&nbsp;</td>
                             <td>Data Inizio</td>
                             <td>&nbsp;</td>
-                            <td>&nbsp;</td> <!-- Aggiungi un altro td vuoto per creare spazio -->
+                            <td>&nbsp;</td>
                             <td>Data Fine</td>
                         </tr>
                         <tr th:each="offerta : ${offerte}">
@@ -336,9 +339,20 @@
     });
 
     /* scroll della pagina per modifica prodotto */
-    let prodottoMod = document.getElementById("idProdMod");
-    if(prodottoMod.value != -1)
+    var prodottoMod = document.getElementById("idProdMod");
+    if(prodottoMod.value != -1){
         window.location.href = "/adminprodotti?id=" + prodottoMod.value + "#formUno";
+    }
+
+
+    let registrato = document.getElementById("prodRegistrato");
+    let registratoSplit = registrato.value.split('@');
+    if(registratoSplit[0] == 's'){
+        let rigaProdotto = document.getElementById("rigaProdotto" + registratoSplit[1]);
+        rigaProdotto.classList.add('highlight');
+        setTimeout(function() { rigaProdotto.classList.remove('highlight');}, 1000);
+    }
+
 </script>
 
 </body>
