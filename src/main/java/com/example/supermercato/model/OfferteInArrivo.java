@@ -39,6 +39,7 @@ public class OfferteInArrivo {
     }
 
     public void setDataInizio(LocalDate dataInizio) {
+
         this.dataInizio = dataInizio;
     }
 
