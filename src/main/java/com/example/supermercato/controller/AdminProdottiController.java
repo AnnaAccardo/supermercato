@@ -82,7 +82,7 @@ public class AdminProdottiController {
 
         prodottoService.registraProdotto(prodotto, nome, prezzo, descrizione, idSottocategorie, immagine);
 
-        return "redirect:/adminprodotti#formUno";
+        return "redirect:/adminprodotti";
     }
 
     @PostMapping("/aggiungiofferta")
