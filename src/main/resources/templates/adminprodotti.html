@@ -181,6 +181,7 @@
                     </table>
                     <hr>
                     <form action="/adminprodotti" method="post" enctype="multipart/form-data" id="formUno">
+                        <input type="hidden" th:value="${idProdModif == null ? '-1' : idProdModif}" id="idProdMod">
                         <input type="text" name="nome" th:value="${prodotto.nome}" placeholder="Scrivi il nome del prodotto" required class="campi">
                         <br>
                         <input type="number" step="any" name="prezzo" th:value="${prodotto.prezzo}" placeholder="Scrivi il prezzo" required class="campi">
@@ -256,7 +257,7 @@
                         <tr th:each="offerta : ${offerte}">
                             <td th:text="${offerta.sottocategoria.marca}"></td>
                             <td>&nbsp;</td>
-                            <td>&nbsp;</td> <!-- Aggiungi un td vuoto -->
+                            <td>&nbsp;</td>
                             <td th:text="${offerta.valoreOfferta.valore} + '%'" class="percentuale-offerta"></td>
                             <td>&nbsp;</td>
                             <td th:text="${#temporals.format(offerta.dataInizio, 'dd/MM/yyyy')}"></td>
@@ -334,6 +335,10 @@
         });
     });
 
+    /* scroll della pagina per modifica prodotto */
+    let prodottoMod = document.getElementById("idProdMod");
+    if(prodottoMod.value != -1)
+        window.location.href = "/adminprodotti?id=" + prodottoMod.value + "#formUno";
 </script>
 
 </body>

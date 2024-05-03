@@ -68,6 +68,7 @@ public class AdminProdottiController {
         List<ValoreOfferta> valoreOfferta = valoreOffertaService.getValoreOfferta();
         model.addAttribute("valoreofferta", valoreOfferta);
 
+        model.addAttribute("idProdModif", id);
 
         return "adminprodotti";
     }
