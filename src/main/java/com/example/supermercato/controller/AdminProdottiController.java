@@ -68,6 +68,7 @@ public class AdminProdottiController {
         List<ValoreOfferta> valoreOfferta = valoreOffertaService.getValoreOfferta();
         model.addAttribute("valoreofferta", valoreOfferta);
 
+
         return "adminprodotti";
     }
 
@@ -80,7 +81,7 @@ public class AdminProdottiController {
 
         prodottoService.registraProdotto(prodotto, nome, prezzo, descrizione, idSottocategorie, immagine);
 
-        return "redirect:/adminprodotti";
+        return "redirect:/adminprodotti#formUno";
     }
 
     @PostMapping("/aggiungiofferta")
@@ -91,7 +92,7 @@ public class AdminProdottiController {
             @RequestParam("datafine") LocalDate dataFine
             ){
         offerteInArrivoService.aggiungiOffertaInArrivo(offertaInArrivo, idSottocategorie, idValoreOfferta, dataInizio, dataFine);
-        return "redirect:/adminprodotti";
+        return "redirect:/adminprodotti#offerte-in-arrivo";
     }
 
     @GetMapping("/elimina")
@@ -106,7 +107,7 @@ public class AdminProdottiController {
             @RequestParam("idOff") int idOff
     ){
         offerteInArrivoService.cancellaOffertaInArrivo(idOff);
-        return "redirect:/adminprodotti";
+        return "redirect:/adminprodotti#offerte-in-arrivo";
     }
 
     @GetMapping("/attivaofferta")
@@ -117,7 +118,7 @@ public class AdminProdottiController {
     ){
 
         offerteInArrivoService.attivaOfferta(idOff, idSott, idVal);
-        return "redirect:/adminprodotti";
+        return "redirect:/adminprodotti#offerte-in-arrivo";
     }
 
     @GetMapping("/disattivaofferta")
@@ -125,7 +126,7 @@ public class AdminProdottiController {
         @RequestParam("idSott") int idSott
     ){
         sottocategoriaService.disattivaOfferta(idSott);
-        return "redirect:/adminprodotti";
+        return "redirect:/adminprodotti#gestione-offerte";
     }
 
     @GetMapping("/logout")
