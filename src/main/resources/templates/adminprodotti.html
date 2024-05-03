@@ -233,7 +233,7 @@
                             <td class="celle" th:text="${sottocategoria.statoOfferta == false ? '--' : sottocategoria.valoreOfferta.valore + '%'}"></td>
                             <td>&nbsp;</td>
                             <td>
-                                <a class="btn btn-warning" th:href="@{/adminprodotti/disattivaofferta(idSott=${sottocategoria.id})}">Disattiva Offerta</a>
+                                <a class="btn btn-warning buttonDisattiva" th:href="@{/adminprodotti/disattivaofferta(idSott=${sottocategoria.id})}" th:if="${sottocategoria.statoOfferta}">Disattiva Offerta</a>
                             </td>
                         </tr>
                     </table>
@@ -299,6 +299,8 @@
     </div>
 </div>
 <script>
+
+    /* check date */
     var oggi = new Date();
     var giorno = oggi.getDate();
     var mese = oggi.getMonth()+1;
@@ -344,7 +346,7 @@
         window.location.href = "/adminprodotti?id=" + prodottoMod.value + "#formUno";
     }
 
-
+    /* prodotti aggiunti e modificati si illuminano */
     let registrato = document.getElementById("prodRegistrato");
     let registratoSplit = registrato.value.split('@');
     if(registratoSplit[0] == 's'){
