@@ -70,9 +70,10 @@ public class AdminProdottiController {
         List<ValoreOfferta> valoreOfferta = valoreOffertaService.getValoreOfferta();
         model.addAttribute("valoreofferta", valoreOfferta);
 
-        model.addAttribute("idProdModif", id);
-        model.addAttribute("registrazione", registrazione);
-        model.addAttribute("idReg", idReg);
+        model.addAttribute("idProdModif", id); //per scroll al form per modifica
+        model.addAttribute("registrazione", registrazione); //per illuminare prodotto
+        model.addAttribute("idReg", idReg);//per illuminare prodotto
+        model.addAttribute("idOff", idOff); //per scroll al form per modifica
 
         return "adminprodotti";
     }

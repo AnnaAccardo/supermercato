@@ -292,6 +292,7 @@
                         </select>
                         <input type="date" name="datainizio" class="campi" th:value="${offertainarrivo.dataInizio}" required min="yyyy-mm-dd">
                         <input type="date" name="datafine" class="campi" th:value="${offertainarrivo.dataFine}" required onchange="controlloData()">
+                        <input type="hidden" th:value="${idOff == null ? -1 : idOff}" id="idOffRegistrata">
                         <input type="submit" value="Registra" class="pulsante">
                     </form>
                 </div>
@@ -354,6 +355,13 @@
         let rigaProdotto = document.getElementById("rigaProdotto" + registratoSplit[1]);
         setTimeout(function() { rigaProdotto.classList.add('highlight');}, 1000);
         setTimeout(function() { rigaProdotto.classList.remove('highlight');}, 3000);
+    }
+
+
+    /* scroll della pagina per modifica offerta in arrivo */
+    var offertaMod = document.getElementById("idOffRegistrata");
+    if(offertaMod.value != -1){
+        window.location.href = "/adminprodotti?idOff=" + offertaMod.value + "#formDue";
     }
 
 </script>
