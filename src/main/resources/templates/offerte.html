@@ -117,7 +117,7 @@
                         <h5 class="card-title mb-0" th:text="${prodotto.nome}">Prodotto</h5>
                     </div>
                     <div class="card-footer bg-transparent border-1">
-                        <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')} + ' €'" th:style="'text-decoration: line-through; font-style: italic;'">Prezzo</span>
+                        <span class="prezzi" th:text="${prodotto.prezzo < 1 ? '0' + #numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA') : #numbers.formatDecimal(prodotto.prezzo, 0, 'POINT', 2, 'COMMA')} + ' €'" th:style="'text-decoration: line-through; font-style: italic;'">Prezzo</span>
                         <span class="prezzi" th:text="${#numbers.formatDecimal(prodotto.prezzo-(prodotto.prezzo*prodotto.sottocategoria.valoreOfferta.valore/100), 1, 'POINT', 2, 'COMMA')} + ' €'">Prezzo Scontato</span>
                         <a th:href="@{/dettaglio(id=${prodotto.id})}" class="btn btn-danger" style="width:35%; " >Dettaglio</a>
                     </div>
