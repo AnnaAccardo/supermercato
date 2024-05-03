@@ -113,6 +113,9 @@
         .celle {
         padding: 20px;
         }
+        .percentuale-offerta {
+        width: 70px; /* Imposta la larghezza desiderata */
+    }
 
     </style>
 </head>
@@ -242,19 +245,23 @@
                         <tr>
                             <td>Marca</td>
                             <td>&nbsp;</td>
+                            <td>&nbsp;</td> <!-- Aggiungi un td vuoto per creare spazio -->
                             <td>Offerta</td>
                             <td>&nbsp;</td>
                             <td>Data Inizio</td>
                             <td>&nbsp;</td>
+                            <td>&nbsp;</td> <!-- Aggiungi un altro td vuoto per creare spazio -->
                             <td>Data Fine</td>
                         </tr>
                         <tr th:each="offerta : ${offerte}">
                             <td th:text="${offerta.sottocategoria.marca}"></td>
                             <td>&nbsp;</td>
-                            <td th:text="${offerta.valoreOfferta.valore} + '%'"></td>
+                            <td>&nbsp;</td> <!-- Aggiungi un td vuoto -->
+                            <td th:text="${offerta.valoreOfferta.valore} + '%'" class="percentuale-offerta"></td>
                             <td>&nbsp;</td>
                             <td th:text="${offerta.dataInizio}"></td>
                             <td>&nbsp;</td>
+                            <td>&nbsp;</td> <!-- Aggiungi un altro td vuoto -->
                             <td th:text="${offerta.dataFine}"></td>
                             <td>&nbsp;</td>
                             <td>
@@ -327,7 +334,7 @@
                 window.location.href = "/adminprodotti/elimina?id=" + datiProd[1];
         });
     });
-    
+
 </script>
 
 </body>
