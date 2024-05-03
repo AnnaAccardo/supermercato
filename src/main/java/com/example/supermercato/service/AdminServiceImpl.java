@@ -25,9 +25,9 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public boolean loginAdmin(String username, String password, HttpSession session) {
+    public boolean loginAdmin(String nome, String cognome, String username, String password, HttpSession session) {
 
-        Admin admin = (Admin) adminDao.findByUsernameAndPassword(username, password);
+        Admin admin = (Admin) adminDao.findByNomeAndCognomeAndUsernameAndPassword(nome, cognome, username, password);
         if(admin != null) {
             session.setAttribute("admin", admin);
             return true;

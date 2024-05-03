@@ -12,7 +12,7 @@ public interface AdminService {
 
     Admin getAdminById(int id);
 
-    boolean loginAdmin(String username, String password, HttpSession session);
+    boolean loginAdmin(String nome, String cognome, String username, String password, HttpSession session);
 
     void registraAdmin(Admin admin);
 }

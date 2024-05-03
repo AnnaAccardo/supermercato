@@ -259,10 +259,9 @@
                             <td>&nbsp;</td> <!-- Aggiungi un td vuoto -->
                             <td th:text="${offerta.valoreOfferta.valore} + '%'" class="percentuale-offerta"></td>
                             <td>&nbsp;</td>
-                            <td th:text="${offerta.dataInizio}"></td>
+                            <td th:text="${#temporals.format(offerta.dataInizio, 'dd/MM/yyyy')}"></td>
                             <td>&nbsp;</td>
-                            <td>&nbsp;</td> <!-- Aggiungi un altro td vuoto -->
-                            <td th:text="${offerta.dataFine}"></td>
+                            <td th:text="${#temporals.format(offerta.dataFine, 'dd/MM/yyyy')}"></td>
                             <td>&nbsp;</td>
                             <td>
                                 <a class="btn btn-info" th:href="@{/adminprodotti(idOff=${offerta.id})}">Modifica</a>

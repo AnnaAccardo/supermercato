@@ -27,9 +27,9 @@ public class AdminController {
     }
 
     @PostMapping
-    public String getPost(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
+    public String getPost(@RequestParam("nome") String nome, @RequestParam("cognome") String cognome, @RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
 
-        if(!adminService.loginAdmin(username, password, session))
+        if(!adminService.loginAdmin(nome, cognome, username, password, session))
             return "redirect:/loginadmin?error";
         return "redirect:/adminprodotti";
     }
